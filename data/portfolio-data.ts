@@ -72,7 +72,7 @@ export const portfolioData = {
       { text: "HUBUNGI SAYA", href: "#contact", variant: "outline" as const },
     ],
     photo: {
-      src: "/images/hero-photo.jpg",
+      src: "/images/hero-photo.png",
       alt: "Foto Muhammad Rifky",
       label: "FIG. 01 — RIFKY",
       circularText: "• DESAIN • KODE • KARYA • INOVASI ",
@@ -98,7 +98,7 @@ export const portfolioData = {
   about: {
     heading: { label: "01 / TENTANG", text: "SIAPA SAYA?" },
     photo: {
-      src: "/images/about-photo.jpg",
+      src: "/images/about-photo.png",
       alt: "Muhammad Rifky sedang bekerja di laptop",
       stickyNote: "☕ 4 Cangkir Kopi / Hari & Pecinta Web Cepat",
     },
@@ -115,22 +115,22 @@ export const portfolioData = {
 
   projects: [
     {
-      id: "nexus-analytics",
+      id: "information-perisai-system",
       number: "01",
-      title: "Nexus Fintech & Crypto Analytics",
-      description: "Platform analitik finansial real-time dengan visualisasi data kompleks berlatensi rendah.",
-      thumbnail: "/images/project-crypto.jpg",
+      title: "InformationPerisai-System — UKM PERISAI UMI",
+      description: "Platform digital terpadu Pusat Pengembangan Riset Mahasiswa Universitas Muslim Indonesia. Menggabungkan portal publik Dark Luxury & Scientific Prestige dengan CMS internal berkeamanan tinggi.",
+      thumbnail: "/images/project-perisai.png",
       status: "LIVE",
-      tags: ["Next.js", "TypeScript", "Tailwind CSS", "WebSockets", "Highcharts"],
+      tags: ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS v4", "Prisma ORM", "Turso / LibSQL"],
       rotation: "-1.5deg",
       caseStudy: {
-        masalah: "Trader aktif membutuhkan dashboard pemantauan pasar real-time tanpa penurunan performa fps saat pergerakan harga tinggi.",
-        peran: "Lead Frontend Engineer — merancang state pooling, modular widget charts, dan optimasi frame rate rendering.",
-        proses: "Mengimplementasikan WebSocket pooling, debounced canvas updates, dan caching modular untuk 50+ pasangan mata uang kripto.",
-        tools: "Next.js 16, TypeScript, Tailwind CSS, WebSockets, Highcharts, Zustand",
-        hasil: "Latency dashboard berkurang 42%, Lighthouse score stabil 98, memproses hingga 10k data tick per detik dengan lancar.",
-        liveUrl: "https://nexusanalytics.io",
-        repoUrl: "https://github.com/justrifkyy/nexus-analytics",
+        masalah: "Kebutuhan migrasi dari sistem legacy PHP/Laravel ke arsitektur web modern yang reaktif dan cepat, kebutuhan CMS mandiri bagi fungsionaris yang berganti tiap periode tanpa menyentuh kode sumber, serta shared database bersama sistem PSDM dengan zero-destruction policy.",
+        peran: "Fullstack Web Developer / Software Engineer — merancang arsitektur portal publik, sistem otorisasi RBAC terpusat, CMS fungsionaris, dan integrasi basis data dual-driver.",
+        proses: "Memisahkan rute (public) dengan SSR/ISR dan admin/(panel) terproteksi, merancang skema 21 tabel relasional (M_* & T_*) dengan Schema Guard (db/guard.mjs) untuk dual-driver (SQLite lokal & Turso LibSQL Cloud), sistem izin terpusat fungsi can(), serta kalkulasi status tenggat waktu dinamis zona WITA (UTC+8).",
+        tools: "Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS v4, Prisma ORM, SQLite / Turso (LibSQL), Zod",
+        hasil: "Peningkatan performa tinggi & SEO (SSR/ISR), dashboard CMS mandiri untuk 42 fungsionaris aktif, integritas shared database terjaga 100% tanpa risiko destruktif, dan automasi kalkulasi deadline kompetisi riset.",
+        liveUrl: "https://perisai-umi.com",
+        repoUrl: "https://perisai-umi.com",
       },
     },
     {

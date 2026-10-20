@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="none">
+  <!-- Hard Shadow -->
+  <rect x="3" y="3" width="27" height="27" fill="#0A0A0A" />
+  <!-- Main Badge Yellow -->
+  <rect x="2" y="2" width="27" height="27" fill="#FFE14D" stroke="#0A0A0A" stroke-width="2.5" />
+  <!-- Corner Accent Triangle in Pink -->
+  <polygon points="2,2 12,2 2,12" fill="#FF5DA2" stroke="#0A0A0A" stroke-width="1.5" />
+  <!-- Monogram R -->
+  <path d="M9 7 H18 C21.5 7 23.5 9 23.5 12 C23.5 14.8 21.5 16.5 18.5 17 L24 25 H19 L14 18 H12.5 V25 H9 V7 Z M12.5 10.5 V14.5 H17.5 C19 14.5 20 13.8 20 12.5 C20 11.2 19 10.5 17.5 10.5 H12.5 Z" fill="#0A0A0A" />
+  <!-- Pink dot -->
+  <rect x="23.5" y="21.5" width="3.5" height="3.5" fill="#FF5DA2" stroke="#0A0A0A" stroke-width="1" />
+</svg>

@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import { Bricolage_Grotesque, Space_Grotesk, Space_Mono } from "next/font/google";
 import "./globals.css";
+import { SmoothScrollProvider } from "@/components/providers/SmoothScrollProvider";
+import { CustomCursor } from "@/components/ui/CustomCursor";
+import { ScrollProgress } from "@/components/ui/ScrollProgress";
+import { NoiseOverlay } from "@/components/ui/NoiseOverlay";
 
 const bricolage = Bricolage_Grotesque({
   subsets: ["latin"],
@@ -22,14 +26,16 @@ const spaceMono = Space_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Muhammad Rifky — Neo-Brutalist Portfolio",
+  title: "Rifky's Portofolio",
   description: "Portofolio Neo-Brutalisme Muhammad Rifky. Fullstack Developer & Creative Technologist.",
+  icons: {
+    icon: [
+      { url: "/logo-icon.svg", type: "image/svg+xml" },
+    ],
+    shortcut: "/logo-icon.svg",
+    apple: "/logo-icon.svg",
+  },
 };
-
-import { SmoothScrollProvider } from "@/components/providers/SmoothScrollProvider";
-import { CustomCursor } from "@/components/ui/CustomCursor";
-import { ScrollProgress } from "@/components/ui/ScrollProgress";
-import { NoiseOverlay } from "@/components/ui/NoiseOverlay";
 
 export default function RootLayout({
   children,

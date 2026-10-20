@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 72" width="280" height="72" fill="none">
+  <!-- Icon Mark Shadow -->
+  <rect x="8" y="10" width="54" height="54" fill="#0A0A0A" />
+  <!-- Icon Mark Main -->
+  <rect x="4" y="6" width="54" height="54" fill="#FFE14D" stroke="#0A0A0A" stroke-width="4" />
+  <!-- Icon Corner Accent -->
+  <path d="M4 6 L24 6 L4 26 Z" fill="#FF5DA2" stroke="#0A0A0A" stroke-width="3" />
+  <!-- Icon Letter R -->
+  <path d="M18 16 H36 C43 16 47 20 47 26 C47 31.5 43 35 37 36.5 L47 52 H38 L28 38 H25 V52 H18 V16 Z M25 24 V31 H35 C38 31 40 29.5 40 27 C40 24.5 38 24 35 24 H25 Z" fill="#0A0A0A" />
+  <!-- Dot Accent -->
+  <rect x="48" y="46" width="7" height="7" fill="#FF5DA2" stroke="#0A0A0A" stroke-width="2" />
+
+  <!-- Text "RIFKY" Wordmark -->
+  <text x="74" y="46" font-family="'Bricolage Grotesque', 'Space Grotesk', system-ui, sans-serif" font-weight="900" font-size="34" letter-spacing="-0.04em" fill="#0A0A0A">RIFKY</text>
+  
+  <!-- Suffix Dot in Pink -->
+  <rect x="180" y="36" width="10" height="10" fill="#FF5DA2" stroke="#0A0A0A" stroke-width="2.5" />
+
+  <!-- Subtitle Tag "DEV" -->
+  <rect x="198" y="24" width="48" height="22" fill="#E8E4D4" stroke="#0A0A0A" stroke-width="2.5" />
+  <text x="208" y="39" font-family="'Space Mono', monospace" font-weight="700" font-size="11" fill="#0A0A0A" letter-spacing="0.1em">DEV</text>
+</svg>
