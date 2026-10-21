@@ -5,6 +5,7 @@ import { About } from "@/components/sections/About";
 import { Projects } from "@/components/sections/Projects";
 import { Skills } from "@/components/sections/Skills";
 import { Experience } from "@/components/sections/Experience";
+import { Certificates } from "@/components/sections/Certificates";
 import { Downloads } from "@/components/sections/Downloads";
 import { Contact } from "@/components/sections/Contact";
 import { Footer } from "@/components/layout/Footer";
@@ -51,14 +52,17 @@ export default function Home() {
         {/* 8. Experience & Education (Vertical Line Timeline) */}
         <Experience />
 
-        {/* 9. Downloads CTA (CV ATS & Portfolio PDF) */}
+        {/* 9. Certificates & Credentials (Compact Neo-Brutalist Grid) */}
+        <Certificates />
+
+        {/* 10. Downloads CTA (CV ATS & Portfolio PDF) */}
         <Downloads />
 
-        {/* 10. Contact Section (Dark Grid + Brutalist Inputs) */}
+        {/* 11. Contact Section (Dark Grid + Brutalist Inputs) */}
         <Contact />
       </main>
 
-      {/* 11. Footer */}
+      {/* 12. Footer */}
       <Footer />
     </div>
   );

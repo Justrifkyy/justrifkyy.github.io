@@ -31,12 +31,23 @@ export interface TimelineItem {
   summary: string;
 }
 
+export interface CertificateItem {
+  id: string;
+  title: string;
+  issuer: string;
+  year: string;
+  category: "Web" | "Mobile" | "Cloud" | "Software Eng" | "Architecture";
+  credentialId: string;
+  credentialUrl: string;
+  badgeColor: "primary" | "accentPink" | "accentBlue";
+}
+
 export const portfolioData = {
   meta: {
-    owner: "Muhammad Rifky",
+    owner: "Muhammad Rifky Saputra Scania",
     initials: "RF.",
-    role: "Fullstack Developer & Creative Technologist",
-    tagline: "Membangun sistem web tangguh dengan estetika tanpa kompromi.",
+    role: "Software Engineer — Web, Mobile & Multi-Platform",
+    tagline: "Merancang arsitektur perangkat lunak tangguh & reaktif: Web, Mobile, hingga Multi-Platform.",
     language: "id",
     style: "neo-brutalism",
   },
@@ -48,6 +59,7 @@ export const portfolioData = {
       { label: "Tentang", href: "#about" },
       { label: "Skill", href: "#skills" },
       { label: "Pengalaman", href: "#experience" },
+      { label: "Sertifikat", href: "#certificates" },
       { label: "Kontak", href: "#contact" },
     ],
     ctaButton: {
@@ -58,13 +70,20 @@ export const portfolioData = {
 
   hero: {
     eyebrow: "● TERSEDIA UNTUK KERJA / FREELANCE",
-    headingLines: ["HALO, SAYA", "RIFKY", "FULLSTACK DEV."],
+    headingLines: ["HALO, SAYA", "RIFKY", "SOFTWARE ENG."],
+    disciplines: [
+      { label: "WEB APPLICATIONS", color: "primary" },
+      { label: "MOBILE (IOS & ANDROID)", color: "accentPink" },
+      { label: "MULTI-PLATFORM", color: "accentBlue" },
+    ],
     typewriterSequence: [
-      "Membangun aplikasi web performa tinggi.",
+      "Software Engineer lintas platform.",
       1800,
-      "Merancang arsitektur sistem yang rapi.",
+      "Membangun aplikasi Web performa tinggi.",
       1800,
-      "Mengubah ide kompleks jadi kode elegan.",
+      "Mengembangkan aplikasi Mobile iOS & Android.",
+      1800,
+      "Merancang solusi Multi-Platform yang skalabel.",
       1800,
     ],
     cta: [
@@ -73,7 +92,7 @@ export const portfolioData = {
     ],
     photo: {
       src: "/images/hero-photo.png",
-      alt: "Foto Muhammad Rifky",
+      alt: "Foto Muhammad Rifky Saputra Scania",
       label: "FIG. 01 — RIFKY",
       circularText: "• DESAIN • KODE • KARYA • INOVASI ",
       stickerText: "OPEN TO WORK",
@@ -81,17 +100,21 @@ export const portfolioData = {
   },
 
   marquee1: [
-    "FULLSTACK DEV",
+    "SOFTWARE ENGINEER",
     "✱",
-    "REACT & NEXT.JS",
+    "WEB APPLICATIONS",
     "✱",
-    "CREATIVE TECH",
+    "MOBILE APPS",
+    "✱",
+    "MULTI-PLATFORM",
     "✱",
     "SYSTEM DESIGN",
     "✱",
-    "SIAP KOLABORASI",
+    "REACT & NEXT.JS",
     "✱",
-    "TYPESCRIPT",
+    "FLUTTER & DART",
+    "✱",
+    "SIAP KOLABORASI",
     "✱",
   ],
 
@@ -100,11 +123,11 @@ export const portfolioData = {
     photo: {
       src: "/images/about-photo.png",
       alt: "Muhammad Rifky sedang bekerja di laptop",
-      stickyNote: "☕ 4 Cangkir Kopi / Hari & Pecinta Web Cepat",
+      stickyNote: "📸 Programmer di depan layar, fotografer di balik lensa.",
     },
     paragraphs: [
-      "Saya adalah seorang Fullstack Developer yang berfokus menciptakan pengalaman web interaktif, performa tinggi, dan scalable. Dengan fondasi kuat di ekosistem modern TypeScript, Next.js, dan Tailwind CSS, saya membangun aplikasi dari perancangan arsitektur hingga deployment akhir.",
-      "Bagi saya, web bukan sekadar deretan fungsi logika, melainkan medium kerajinan (craftsmanship) digital. Saya sangat menghargai kecepatan respon, tipografi tegas, aksesibilitas ramah pengguna, dan gaya neo-brutalism yang berani serta berkarakter kuat.",
+      "Saya adalah seorang Software Engineer yang berfokus menciptakan pengalaman komputasi interaktif, performa tinggi, dan scalable di berbagai ranah: Web, Mobile (iOS/Android), maupun Multi-Platform. Dengan fondasi rekayasa perangkat lunak yang kokoh, saya merancang sistem dari arsitektur backend, pemodelan data, hingga antarmuka pengguna yang responsif.",
+      "Bagi saya, perangkat lunak bukan sekadar deretan fungsi logika, melainkan sebuah kerajinan digital (craftsmanship). Saya sangat menghargai kecepatan respon eksekusi, kode yang bersih dan teruji (Clean Architecture), aksesibilitas ramah pengguna, serta estetika visual neo-brutalisme yang berani, lugas, dan fungsional.",
     ],
     stats: [
       { value: 18, suffix: "+", label: "Proyek Selesai", color: "primary" as const },
@@ -171,16 +194,75 @@ export const portfolioData = {
         repoUrl: "https://github.com/justrifkyy/promptverse-ide",
       },
     },
+    {
+      id: "agroscan-mobile",
+      number: "04",
+      title: "AgroScan Mobile — AI Plant Disease Detector",
+      description: "Aplikasi mobile cerdas berbasis Flutter untuk deteksi dini penyakit tanaman pangan melalui kamera dan model machine learning on-device offline.",
+      thumbnail: "/images/project-flutter.jpg",
+      status: "LIVE",
+      tags: ["Flutter", "Dart", "TensorFlow Lite", "SQLite Offline", "Clean Architecture"],
+      rotation: "1.5deg",
+      caseStudy: {
+        masalah: "Petani di daerah agrikultur pelosok kesulitan mendiagnosis penyakit daun tanaman pangan secara cepat tanpa koneksi internet yang stabil di lapangan.",
+        peran: "Mobile Software Engineer — merancang arsitektur Flutter, integrasi pipeline on-device machine learning, serta arsitektur database offline-first.",
+        proses: "Mengintegrasikan TensorFlow Lite untuk inferensi langsung di perangkat (on-device ML), sinkronisasi data background saat sinyal internet pulih, serta optimasi rendering 60 FPS.",
+        tools: "Flutter 3, Dart, TFLite, SQLite Offline-First, Bloc State Management, Camera API",
+        hasil: "Diagnosis akurat 94.2% dalam waktu di bawah 0.4 detik tanpa internet sama sekali, telah diuji coba pada 3 kelompok tani lokal.",
+        liveUrl: "https://github.com/justrifkyy",
+        repoUrl: "https://github.com/justrifkyy/agroscan-mobile",
+      },
+    },
+    {
+      id: "fleettrack-pro",
+      number: "05",
+      title: "FleetTrack Pro — Cross-Platform Logistics System",
+      description: "Sistem pelacakan armada logistik real-time terintegrasi untuk Web Dashboard dan Mobile Driver App dengan telemetri GPS berlatensi rendah.",
+      thumbnail: "/images/project-multiplatform.jpg",
+      status: "LIVE",
+      tags: ["Multi-Platform", "React Native", "Next.js", "Go Backend", "WebSockets"],
+      rotation: "-1.2deg",
+      caseStudy: {
+        masalah: "Perusahaan distribusi kesulitan mengoordinasikan rute armada darat secara real-time antara manajer operasional dan supir di lapangan.",
+        peran: "Fullstack & Multi-Platform Engineer — merancang backend microservice Go berkecepatan tinggi, web dashboard manajer, serta aplikasi mobile supir.",
+        proses: "Menerapkan streaming telemetri via WebSockets, background location tracking hemat baterai, dan visualisasi pemetaan rute berbasis Mapbox GL.",
+        tools: "Next.js 16, React Native, Go (Golang), WebSockets, PostgreSQL, Mapbox GL",
+        hasil: "Mengurangi deviasi rute pengiriman sebesar 35% dan menekan biaya konsumsi bahan bakar armada hingga 18% per bulan.",
+        liveUrl: "https://github.com/justrifkyy",
+        repoUrl: "https://github.com/justrifkyy/fleettrack-pro",
+      },
+    },
+    {
+      id: "makassar-creative-hub",
+      number: "06",
+      title: "Makassar Creative Hub — Open Directory Portal",
+      description: "Direktori interaktif dan kalender kegiatan kolaboratif untuk pegiat industri kreatif, developer, dan komunitas teknologi di Indonesia Timur.",
+      thumbnail: "/images/project-crypto.png",
+      status: "OPEN SOURCE",
+      tags: ["Next.js 16", "TypeScript", "Tailwind v4", "Supabase", "Open Source"],
+      rotation: "0.8deg",
+      caseStudy: {
+        masalah: "Informasi acara komunitas kreatif dan tech meetup tersebar secara sporadis di berbagai media sosial tanpa wadah arsip dan pendaftaran terpusat.",
+        peran: "Lead Maintainer & Fullstack Developer — memprakarsai proyek open-source, merancang identitas visual, dan membangun sistem portal.",
+        proses: "Membangun sistem otentikasi Supabase, moderasi agenda crowdsourced, serta sistem integrasi kalender otomatis ke Google & Apple Calendar.",
+        tools: "Next.js App Router, Supabase Auth & DB, Tailwind CSS v4, Lucide Icons",
+        hasil: "Memfasilitasi 40+ event komunitas sepanjang tahun 2024 dan menghubungkan lebih dari 1,200 talenta kreatif aktif.",
+        liveUrl: "https://github.com/justrifkyy",
+        repoUrl: "https://github.com/justrifkyy/makassar-creative-hub",
+      },
+    },
   ] as ProjectItem[],
 
   marquee2: [
-    "REACT",
+    "TYPESCRIPT",
     "✱",
     "NEXT.JS",
     "✱",
-    "TYPESCRIPT",
+    "FLUTTER",
     "✱",
     "TAILWIND CSS",
+    "✱",
+    "REACT NATIVE",
     "✱",
     "NODE.JS",
     "✱",
@@ -196,44 +278,44 @@ export const portfolioData = {
     heading: { label: "03 / SENJATA", text: "SKILL & TOOLS" },
     groups: [
       {
-        title: "FRONTEND",
+        title: "WEB & BACKEND",
         color: "primary" as const,
         items: [
+          "Next.js 16 (App Router)",
           "React 19",
-          "Next.js (App Router)",
           "TypeScript",
           "Tailwind CSS v4",
-          "Motion / Framer",
-          "GSAP & ScrollTrigger",
-          "HTML5 Semantic",
-          "Responsive Layouts",
-          "Web Performance (Core Web Vitals)",
+          "Node.js & Express",
+          "PostgreSQL & Prisma ORM",
+          "RESTful & GraphQL APIs",
+          "WebSockets & Realtime",
+          "Web Performance & SEO",
         ],
       },
       {
-        title: "DESAIN / KREATIF",
+        title: "MOBILE & MULTI-PLATFORM",
         color: "accentPink" as const,
         items: [
-          "Figma & Design Tokens",
-          "Neo-Brutalist Aesthetics",
-          "Micro-Animations",
-          "Design Systems",
-          "Grid & Spatial Layouts",
-          "Creative Direction",
-          "User Centered UX",
+          "Flutter & Dart",
+          "React Native",
+          "Android (Kotlin) Basics",
+          "Cross-Platform Architecture",
+          "Offline-First & SQLite",
+          "State Management (Bloc / Zustand)",
+          "Responsive Mobile UI/UX",
         ],
       },
       {
-        title: "BACKEND & TOOLS",
+        title: "ENGINEERING & TOOLS",
         color: "accentBlue" as const,
         items: [
-          "Node.js / Express",
-          "PostgreSQL & Prisma",
-          "RESTful & GraphQL APIs",
-          "Git & GitHub Actions",
+          "System Architecture & Design",
+          "Git & GitHub Actions CI/CD",
           "Docker Containers",
-          "Vercel & Supabase",
-          "Turbopack & Vite",
+          "Turso & Cloud Databases",
+          "Clean Architecture & OOP",
+          "Linux Shell & DevOps Basics",
+          "Figma & Design Systems",
         ],
       },
     ] as SkillGroup[],
@@ -250,21 +332,88 @@ export const portfolioData = {
       },
       {
         period: "2022 — 2024",
-        title: "Frontend Developer",
+        title: "Frontend & Mobile Developer",
         org: "Digital Creative Lab",
-        summary: "Mengembangkan berbagai landing page interaktif, dashboard SaaS, serta sistem desain modular berbasis Next.js.",
+        summary: "Mengembangkan berbagai aplikasi web interaktif, prototipe mobile cross-platform, serta sistem desain modular berbasis Next.js.",
       },
       {
         period: "2020 — 2022",
         title: "Informatika / Software Engineering",
         org: "Universitas / Studi Independen",
-        summary: "Mendalami struktur data, algoritma, rekayasa perangkat lunak, serta arsitektur web skala global.",
+        summary: "Mendalami struktur data, algoritma, rekayasa perangkat lunak, serta arsitektur web & mobile skala global.",
       },
     ] as TimelineItem[],
   },
 
+  certificates: {
+    heading: { label: "05 / LISENSI", text: "SERTIFIKASI & KOMPETENSI" },
+    description: "Kualifikasi resmi dan lisensi kompetensi di bidang Software Engineering (Web, Mobile Multi-Platform, dan Cloud Architecture).",
+    items: [
+      {
+        id: "cert-flutter",
+        title: "Belajar Membangun Aplikasi Multi-Platform (Flutter)",
+        issuer: "Dicoding Indonesia / Google Authorized",
+        year: "2024",
+        category: "Mobile",
+        credentialId: "DCD-FLUTTER-8921",
+        credentialUrl: "https://www.dicoding.com",
+        badgeColor: "accentPink",
+      },
+      {
+        id: "cert-frontend-expert",
+        title: "Menjadi Front-End Web Developer Expert",
+        issuer: "Dicoding Indonesia",
+        year: "2024",
+        category: "Web",
+        credentialId: "DCD-FE-EXPERT-7142",
+        credentialUrl: "https://www.dicoding.com",
+        badgeColor: "primary",
+      },
+      {
+        id: "cert-bnsp",
+        title: "Sertifikasi Profesi Junior Web Developer",
+        issuer: "Badan Nasional Sertifikasi Profesi (BNSP)",
+        year: "2023",
+        category: "Software Eng",
+        credentialId: "BNSP-TIK-09218",
+        credentialUrl: "https://bnsp.go.id",
+        badgeColor: "accentBlue",
+      },
+      {
+        id: "cert-aws",
+        title: "AWS Cloud Practitioner Essentials",
+        issuer: "Amazon Web Services (AWS)",
+        year: "2023",
+        category: "Cloud",
+        credentialId: "AWS-CP-883109",
+        credentialUrl: "https://aws.amazon.com",
+        badgeColor: "primary",
+      },
+      {
+        id: "cert-solid",
+        title: "Prinsip Pemrograman SOLID & Clean Architecture",
+        issuer: "Dicoding Academy",
+        year: "2024",
+        category: "Architecture",
+        credentialId: "DCD-SOLID-5501",
+        credentialUrl: "https://www.dicoding.com",
+        badgeColor: "accentPink",
+      },
+      {
+        id: "cert-android",
+        title: "Pengembangan Aplikasi Android Pemula & Menengah",
+        issuer: "Google Developers / Dicoding",
+        year: "2023",
+        category: "Mobile",
+        credentialId: "DCD-ANDR-34018",
+        credentialUrl: "https://www.dicoding.com",
+        badgeColor: "accentBlue",
+      },
+    ] as CertificateItem[],
+  },
+
   downloads: {
-    heading: { label: "05 / BAWA PULANG", text: "UNDUH BERKAS" },
+    heading: { label: "06 / BAWA PULANG", text: "UNDUH BERKAS" },
     items: [
       {
         title: "CV (ATS)",
@@ -297,8 +446,9 @@ export const portfolioData = {
   },
 
   footer: {
-    left: "© 2026 Muhammad Rifky",
+    left: "© 2026 Muhammad Rifky Saputra Scania",
     center: "Dibuat dengan Next.js, Tailwind & Passion.",
     right: "↑ KE ATAS",
   },
 };
+

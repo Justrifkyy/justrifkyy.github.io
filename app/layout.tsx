@@ -27,7 +27,7 @@ const spaceMono = Space_Mono({
 
 export const metadata: Metadata = {
   title: "Rifky's Portofolio",
-  description: "Portofolio Neo-Brutalisme Muhammad Rifky. Fullstack Developer & Creative Technologist.",
+  description: "Portofolio Muhammad Rifky Saputra Scania. Fullstack Developer & Creative Technologist.",
   icons: {
     icon: [
       { url: "/logo-icon.svg", type: "image/svg+xml" },

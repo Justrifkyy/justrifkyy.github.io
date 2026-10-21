@@ -42,7 +42,7 @@ export const About: React.FC = () => {
               </div>
 
               {/* Sticky Note Fun Fact rotated 5deg bottom right */}
-              <div className="absolute -bottom-6 -right-4 md:-right-6 z-20 max-w-[220px]">
+              <div className="absolute -bottom-6 -right-4 md:-right-6 z-20 max-w-[240px]">
                 <div className="bg-primary text-ink border-3 border-ink shadow-brutal-sm p-3.5 rotate-6 font-mono font-bold text-xs uppercase leading-snug">
                   <span className="block text-base mb-1">📌 FUN FACT</span>
                   {portfolioData.about.photo.stickyNote}

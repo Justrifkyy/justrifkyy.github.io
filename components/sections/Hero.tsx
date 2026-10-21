@@ -40,7 +40,7 @@ export const Hero: React.FC = () => {
             </h1>
 
             {/* Typewriter Subheading */}
-            <div className="font-mono text-base md:text-xl text-ink font-bold min-h-[3.5rem] mb-8 bg-paper/90 p-3 border-3 border-ink shadow-brutal-sm max-w-xl">
+            <div className="font-mono text-base md:text-xl text-ink font-bold min-h-[3.5rem] mb-6 bg-paper/90 p-3 border-3 border-ink shadow-brutal-sm max-w-xl">
               <span className="text-accent-pink mr-2">›</span>
               <TypeAnimation
                 sequence={portfolioData.hero.typewriterSequence}
@@ -48,6 +48,22 @@ export const Hero: React.FC = () => {
                 speed={50}
                 repeat={Infinity}
               />
+            </div>
+
+            {/* Core Engineering Disciplines (Web, Mobile, Multiplatform) */}
+            <div className="flex flex-wrap items-center gap-2 mb-8">
+              <span className="font-mono text-[11px] font-black uppercase tracking-wider px-3 py-1.5 bg-paper border-2 border-ink shadow-[2px_2px_0_#0A0A0A] flex items-center gap-1.5 hover:-translate-y-0.5 transition-transform select-none">
+                <span className="w-2.5 h-2.5 bg-primary border border-ink" />
+                WEB APPLICATIONS
+              </span>
+              <span className="font-mono text-[11px] font-black uppercase tracking-wider px-3 py-1.5 bg-paper border-2 border-ink shadow-[2px_2px_0_#0A0A0A] flex items-center gap-1.5 hover:-translate-y-0.5 transition-transform select-none">
+                <span className="w-2.5 h-2.5 bg-accent-pink border border-ink" />
+                MOBILE (IOS & ANDROID)
+              </span>
+              <span className="font-mono text-[11px] font-black uppercase tracking-wider px-3 py-1.5 bg-paper border-2 border-ink shadow-[2px_2px_0_#0A0A0A] flex items-center gap-1.5 hover:-translate-y-0.5 transition-transform select-none">
+                <span className="w-2.5 h-2.5 bg-accent-blue border border-ink" />
+                MULTI-PLATFORM
+              </span>
             </div>
 
             {/* CTA Buttons */}
