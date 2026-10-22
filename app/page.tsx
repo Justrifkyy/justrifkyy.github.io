@@ -1,3 +1,5 @@
+"use client";
+
 import { Navbar } from "@/components/layout/Navbar";
 import { Hero } from "@/components/sections/Hero";
 import { MarqueeBanner } from "@/components/sections/MarqueeBanner";
@@ -9,9 +11,11 @@ import { Certificates } from "@/components/sections/Certificates";
 import { Downloads } from "@/components/sections/Downloads";
 import { Contact } from "@/components/sections/Contact";
 import { Footer } from "@/components/layout/Footer";
-import { portfolioData } from "@/data/portfolio-data";
+import { useLanguage } from "@/components/providers/LanguageProvider";
 
 export default function Home() {
+  const { t } = useLanguage();
+
   return (
     <div className="min-h-screen flex flex-col bg-paper text-ink overflow-x-hidden">
       {/* 1. Sticky Brutalist Navbar */}
@@ -23,7 +27,7 @@ export default function Home() {
 
         {/* 3. Marquee Banner 1 (Dark & Tilted -1.5deg) */}
         <MarqueeBanner
-          items={portfolioData.marquee1}
+          items={t.marquee1}
           variant="dark"
           rotate="-1.5deg"
           speed={55}
@@ -38,7 +42,7 @@ export default function Home() {
 
         {/* 6. Marquee Banner 2 (Yellow & Tilted 1deg) */}
         <MarqueeBanner
-          items={portfolioData.marquee2}
+          items={t.marquee2}
           variant="yellow"
           rotate="1.2deg"
           speed={45}

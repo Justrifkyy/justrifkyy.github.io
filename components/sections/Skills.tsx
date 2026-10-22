@@ -1,9 +1,11 @@
 "use client";
 
 import React from "react";
-import { portfolioData } from "@/data/portfolio-data";
+import { useLanguage } from "@/components/providers/LanguageProvider";
 
 export const Skills: React.FC = () => {
+  const { t } = useLanguage();
+
   const headerColors = {
     primary: "bg-primary text-ink",
     accentPink: "bg-accent-pink text-ink",
@@ -23,16 +25,16 @@ export const Skills: React.FC = () => {
         {/* Section Heading */}
         <div className="mb-16">
           <span className="font-mono text-xs md:text-sm font-bold uppercase tracking-widest bg-primary px-3 py-1 border-3 border-ink shadow-brutal-sm inline-block mb-3">
-            {portfolioData.skills.heading.label}
+            {t.skills.heading.label}
           </span>
           <h2 className="font-display font-extrabold uppercase text-clamp-h2 tracking-tight text-ink">
-            {portfolioData.skills.heading.text}
+            {t.skills.heading.text}
           </h2>
         </div>
 
         {/* 3 Columns Category Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {portfolioData.skills.groups.map((group, groupIdx) => (
+          {t.skills.groups.map((group, groupIdx) => (
             <div
               key={group.title}
               className="border-4 border-ink bg-paper shadow-brutal-md flex flex-col transition-transform hover:-translate-y-1 hover:shadow-brutal-lg"

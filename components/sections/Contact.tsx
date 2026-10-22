@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { Check, Copy, Send } from "lucide-react";
 import confetti from "canvas-confetti";
 import { BrutalistButton } from "../ui/BrutalistButton";
-import { portfolioData } from "@/data/portfolio-data";
+import { useLanguage } from "@/components/providers/LanguageProvider";
 
 interface ContactFormData {
   nama: string;
@@ -14,9 +14,11 @@ interface ContactFormData {
 }
 
 export const Contact: React.FC = () => {
+  const { t, lang } = useLanguage();
   const [copied, setCopied] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const {
     register,
@@ -25,24 +27,54 @@ export const Contact: React.FC = () => {
     formState: { errors },
   } = useForm<ContactFormData>();
 
-  const onSubmit = async (_data: ContactFormData) => {
+  const onSubmit = async (data: ContactFormData) => {
     setIsSubmitting(true);
-    // Simulate send or integrate with Formspree / Web3Forms
-    await new Promise((resolve) => setTimeout(resolve, 800));
-    setIsSubmitting(false);
-    setSubmitted(true);
-    reset();
+    setErrorMessage(null);
 
-    confetti({
-      particleCount: 100,
-      spread: 80,
-      origin: { y: 0.6 },
-      colors: ["#FFE14D", "#FF5DA2", "#4D7CFF", "#FFFDF5"],
-    });
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok || !result.success) {
+        throw new Error(
+          result.error ||
+            (lang === "id"
+              ? "Gagal mengirim pesan. Silakan coba lagi."
+              : "Failed to send message. Please try again.")
+        );
+      }
+
+      setSubmitted(true);
+      reset();
+
+      confetti({
+        particleCount: 100,
+        spread: 80,
+        origin: { y: 0.6 },
+        colors: ["#FFE14D", "#FF5DA2", "#4D7CFF", "#FFFDF5"],
+      });
+    } catch (err: any) {
+      console.error("Error submitting contact form:", err);
+      setErrorMessage(
+        err?.message ||
+          (lang === "id"
+            ? `Terjadi kesalahan saat mengirim pesan. Anda juga bisa langsung mengirim email ke ${t.contact.email}`
+            : `An error occurred while sending message. You can also email directly to ${t.contact.email}`)
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const copyEmail = () => {
-    navigator.clipboard.writeText(portfolioData.contact.email);
+    navigator.clipboard.writeText(t.contact.email);
     setCopied(true);
     setTimeout(() => setCopied(false), 2500);
   };
@@ -54,12 +86,12 @@ export const Contact: React.FC = () => {
         {/* Full Width Mega Heading */}
         <div className="mb-16">
           <h2 className="font-display font-extrabold uppercase text-clamp-h1 lg:text-mega leading-[0.9] tracking-tight">
-            <span>MARI </span>
+            <span>{t.contact.headingPart1}</span>
             <span className="relative inline-block mx-1">
               <span className="absolute inset-0 bg-primary -rotate-2 border-3 border-paper translate-y-1 shadow-[4px_4px_0_#FFE14D]" />
-              <span className="relative text-ink px-3 py-0.5">KERJA</span>
+              <span className="relative text-ink px-3 py-0.5">{t.contact.headingHighlight}</span>
             </span>
-            <span> BARENG.</span>
+            <span>{t.contact.headingPart2}</span>
           </h2>
         </div>
 
@@ -71,29 +103,41 @@ export const Contact: React.FC = () => {
             {submitted ? (
               <div className="border-4 border-primary bg-primary text-ink p-8 shadow-[8px_8px_0_#FFFDF5]">
                 <h3 className="font-display font-black text-2xl md:text-3xl uppercase mb-2">
-                  ★ PESAN BERHASIL TERKIRIM! ★
+                  {t.contact.form.successTitle}
                 </h3>
                 <p className="font-mono text-sm md:text-base font-bold mb-6">
-                  Terima kasih! Saya akan membalas pesan Anda sesegera mungkin.
+                  {t.contact.form.successMessage}
                 </p>
                 <BrutalistButton
                   variant="dark"
                   size="sm"
                   onClick={() => setSubmitted(false)}
                 >
-                  KIRIM PESAN LAIN
+                  {t.contact.form.resetButton}
                 </BrutalistButton>
               </div>
             ) : (
               <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+                {errorMessage && (
+                  <div className="border-3 border-accent-pink bg-accent-pink/15 text-paper p-4 font-mono text-xs md:text-sm font-bold flex items-start gap-3">
+                    <span className="text-accent-pink text-base shrink-0">⚠</span>
+                    <div>
+                      <p className="text-accent-pink uppercase tracking-wider mb-1">
+                        {lang === "id" ? "GAGAL MENGIRIM PESAN" : "FAILED TO SEND MESSAGE"}
+                      </p>
+                      <p className="text-paper/90 font-medium leading-relaxed">{errorMessage}</p>
+                    </div>
+                  </div>
+                )}
+
                 <div>
                   <label className="block font-mono font-bold text-xs uppercase tracking-wider text-paper mb-2">
-                    NAMA LENGKAP *
+                    {t.contact.form.nameLabel}
                   </label>
                   <input
                     type="text"
-                    {...register("nama", { required: "Nama tidak boleh kosong" })}
-                    placeholder="Masukkan nama Anda"
+                    {...register("nama", { required: t.contact.form.nameRequired })}
+                    placeholder={t.contact.form.namePlaceholder}
                     className="w-full bg-ink text-paper font-mono text-sm p-4 border-4 border-paper focus:border-primary focus:shadow-[6px_6px_0_#FFE14D] outline-none transition-all placeholder:text-paper/40"
                   />
                   {errors.nama && (
@@ -105,18 +149,18 @@ export const Contact: React.FC = () => {
 
                 <div>
                   <label className="block font-mono font-bold text-xs uppercase tracking-wider text-paper mb-2">
-                    ALAMAT EMAIL *
+                    {t.contact.form.emailLabel}
                   </label>
                   <input
                     type="email"
                     {...register("email", {
-                      required: "Email tidak boleh kosong",
+                      required: t.contact.form.emailRequired,
                       pattern: {
                         value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                        message: "Format email tidak valid",
+                        message: t.contact.form.emailInvalid,
                       },
                     })}
-                    placeholder="nama@perusahaan.com"
+                    placeholder={t.contact.form.emailPlaceholder}
                     className="w-full bg-ink text-paper font-mono text-sm p-4 border-4 border-paper focus:border-primary focus:shadow-[6px_6px_0_#FFE14D] outline-none transition-all placeholder:text-paper/40"
                   />
                   {errors.email && (
@@ -128,12 +172,15 @@ export const Contact: React.FC = () => {
 
                 <div>
                   <label className="block font-mono font-bold text-xs uppercase tracking-wider text-paper mb-2">
-                    PESAN / DISKUSI PROYEK *
+                    {t.contact.form.messageLabel}
                   </label>
                   <textarea
                     rows={5}
-                    {...register("pesan", { required: "Pesan tidak boleh kosong" })}
-                    placeholder="Ceritakan tentang proyek atau ide kolaborasi Anda..."
+                    {...register("pesan", {
+                      required: t.contact.form.messageRequired,
+                      minLength: { value: 10, message: t.contact.form.messageMin },
+                    })}
+                    placeholder={t.contact.form.messagePlaceholder}
                     className="w-full bg-ink text-paper font-mono text-sm p-4 border-4 border-paper focus:border-primary focus:shadow-[6px_6px_0_#FFE14D] outline-none transition-all placeholder:text-paper/40 resize-y"
                   />
                   {errors.pesan && (
@@ -151,7 +198,7 @@ export const Contact: React.FC = () => {
                     className="w-full sm:w-auto"
                     icon={<Send className="w-5 h-5 stroke-[3]" />}
                   >
-                    {isSubmitting ? "MENGIRIM..." : "KIRIM PESAN →"}
+                    {isSubmitting ? t.contact.form.submittingButton : t.contact.form.submitButton}
                   </BrutalistButton>
                 </div>
               </form>
@@ -162,15 +209,14 @@ export const Contact: React.FC = () => {
           <div className="lg:col-span-5 flex flex-col justify-between gap-8">
             <div>
               <h3 className="font-mono font-bold text-xs uppercase tracking-wider text-primary mb-3">
-                KIRIM SUREL LANGSUNG
+                {t.contact.directLabel}
               </h3>
               
               {/* Copy Email Button Box */}
               <div className="border-4 border-paper p-5 bg-ink shadow-[6px_6px_0_#FFFDF5] mb-8">
-                <div className="font-mono text-xs text-paper/70 mb-1">KLIK UNTUK MENYALIN:</div>
                 <div className="flex items-center justify-between gap-2">
                   <span className="font-mono font-bold text-base md:text-lg text-primary break-all">
-                    {portfolioData.contact.email}
+                    {t.contact.email}
                   </span>
                   <button
                     onClick={copyEmail}
@@ -180,12 +226,12 @@ export const Contact: React.FC = () => {
                     {copied ? (
                       <>
                         <Check className="w-4 h-4 text-green-700 stroke-[3]" />
-                        <span>TERSALIN!</span>
+                        <span>{t.contact.copiedButton}</span>
                       </>
                     ) : (
                       <>
                         <Copy className="w-4 h-4 stroke-[2.5]" />
-                        <span>SALIN</span>
+                        <span>{t.contact.copyButton}</span>
                       </>
                     )}
                   </button>
@@ -195,10 +241,10 @@ export const Contact: React.FC = () => {
               {/* Social Media Links */}
               <div>
                 <h3 className="font-mono font-bold text-xs uppercase tracking-wider text-primary mb-3">
-                  TEMUKAN SAYA DI
+                  {lang === "id" ? "TEMUKAN SAYA DI" : "FIND ME ON"}
                 </h3>
                 <div className="flex flex-col gap-3">
-                  {portfolioData.contact.socials.map((social) => (
+                  {t.contact.socials.map((social) => (
                     <a
                       key={social.label}
                       href={social.url}
@@ -221,7 +267,11 @@ export const Contact: React.FC = () => {
             <div className="border-3 border-paper p-4 bg-paper/5">
               <div className="flex items-center gap-2 font-mono text-xs font-bold text-paper">
                 <span className="w-2.5 h-2.5 bg-primary rounded-full animate-pulse" />
-                <span>STATUS: TERSEDIA UNTUK KONTRAK / FULLTIME</span>
+                <span>
+                  {lang === "id"
+                    ? "STATUS: TERSEDIA UNTUK FREELANCE & FULLTIME"
+                    : "STATUS: OPEN FOR FREELANCE & FULLTIME"}
+                </span>
               </div>
             </div>
 

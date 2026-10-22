@@ -5,7 +5,8 @@ import Image from "next/image";
 import { ArrowUpRight, ExternalLink, X, ChevronLeft, ChevronRight } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { BrutalistButton } from "../ui/BrutalistButton";
-import { portfolioData, ProjectItem } from "@/data/portfolio-data";
+import { ProjectItem } from "@/data/portfolio-data";
+import { useLanguage } from "@/components/providers/LanguageProvider";
 
 const GithubIcon: React.FC<{ className?: string }> = ({ className = "w-4 h-4" }) => (
   <svg
@@ -22,118 +23,137 @@ const GithubIcon: React.FC<{ className?: string }> = ({ className = "w-4 h-4" })
   </svg>
 );
 
+type CategoryKey = "web" | "mobile" | "multiplatform";
+
 export const Projects: React.FC = () => {
-  const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(null);
-  const [currentSlide, setCurrentSlide] = useState(0);
+  const { t, lang } = useLanguage();
+  const [selectedProjectId, setSelectedProjectId] = useState<string | null>(null);
+  const [currentSectionIndex, setCurrentSectionIndex] = useState(0);
   const [direction, setDirection] = useState(1);
 
-  const projects = portfolioData.projects;
-  const itemsPerSlide = 2; // Menampilkan 2 proyek besar bergantian per slide
-  const totalSlides = Math.ceil(projects.length / itemsPerSlide);
+  const sections: { key: CategoryKey; label: string; count: number }[] = [
+    { key: "web", label: t.projects.categoryLabels.web, count: 3 },
+    { key: "mobile", label: t.projects.categoryLabels.mobile, count: 3 },
+    { key: "multiplatform", label: t.projects.categoryLabels.multiplatform, count: 3 },
+  ];
 
-  const nextSlide = useCallback(() => {
+  const totalSections = sections.length;
+  const activeSection = sections[currentSectionIndex];
+
+  // Projects strictly filtered by active section (exactly 3 projects per section, total 9)
+  const projects = t.projects.items;
+  const currentProjects = projects.filter((p) => p.category === activeSection.key);
+
+  // Selected project for modal
+  const selectedProject = selectedProjectId
+    ? projects.find((p) => p.id === selectedProjectId) || null
+    : null;
+
+  const nextSection = useCallback(() => {
     setDirection(1);
-    setCurrentSlide((prev) => (prev + 1) % totalSlides);
-  }, [totalSlides]);
+    setCurrentSectionIndex((prev) => (prev + 1) % totalSections);
+  }, [totalSections]);
 
-  const prevSlide = useCallback(() => {
+  const prevSection = useCallback(() => {
     setDirection(-1);
-    setCurrentSlide((prev) => (prev - 1 + totalSlides) % totalSlides);
-  }, [totalSlides]);
+    setCurrentSectionIndex((prev) => (prev - 1 + totalSections) % totalSections);
+  }, [totalSections]);
 
-  const goToSlide = (slideIndex: number) => {
-    setDirection(slideIndex > currentSlide ? 1 : -1);
-    setCurrentSlide(slideIndex);
+  const goToSection = (index: number) => {
+    setDirection(index > currentSectionIndex ? 1 : -1);
+    setCurrentSectionIndex(index);
   };
 
   // Keyboard navigation
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (selectedProject) return; // Don't slide if modal is open
-      if (e.key === "ArrowRight") nextSlide();
-      if (e.key === "ArrowLeft") prevSlide();
+      if (selectedProjectId) return;
+      if (e.key === "ArrowRight") nextSection();
+      if (e.key === "ArrowLeft") prevSection();
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [nextSlide, prevSlide, selectedProject]);
-
-  // Current batch of projects
-  const startIndex = currentSlide * itemsPerSlide;
-  const currentProjects = projects.slice(startIndex, startIndex + itemsPerSlide);
+  }, [nextSection, prevSection, selectedProjectId]);
 
   return (
     <section id="projects" className="relative py-20 md:py-28 bg-paper border-b-4 border-ink overflow-hidden">
       <div className="w-full max-w-[1320px] mx-auto px-4 md:px-8">
         
-        {/* Section Heading & Brutalist Carousel Controls Bar */}
-        <div className="mb-14 flex flex-col lg:flex-row lg:items-end justify-between gap-6 pb-6 border-b-4 border-ink">
+        {/* Section Heading & Brutalist Controls Header */}
+        <div className="mb-10 flex flex-col lg:flex-row lg:items-end justify-between gap-6 pb-6 border-b-4 border-ink">
           <div>
             <span className="font-mono text-xs md:text-sm font-bold uppercase tracking-widest bg-accent-pink px-3 py-1 border-3 border-ink shadow-brutal-sm inline-block mb-3">
-              02 / KARYA
+              {t.projects.heading.label}
             </span>
             <h2 className="font-display font-extrabold uppercase text-clamp-h2 tracking-tight text-ink">
-              PROYEK PILIHAN
+              {t.projects.heading.text}
             </h2>
           </div>
 
-          {/* Carousel Navigation Controller */}
-          <div className="flex flex-wrap items-center gap-4">
+          {/* Carousel Category Jumpers & Prev/Next */}
+          <div className="flex flex-wrap items-center gap-3">
             {/* Status counter pill */}
             <div className="font-mono font-bold text-xs uppercase px-3 py-2 bg-paper border-3 border-ink shadow-brutal-sm flex items-center gap-2">
               <span className="w-2.5 h-2.5 bg-primary border border-ink rounded-full animate-pulse" />
               <span>
-                HALAMAN 0{currentSlide + 1} / 0{totalSlides} ({projects.length} PROYEK TOTAL)
+                {t.projects.pageLabel} 0{currentSectionIndex + 1} / 0{totalSections} ({projects.length} {t.projects.totalLabel})
               </span>
-            </div>
-
-            {/* Direct Jump Pills */}
-            <div className="hidden sm:flex items-center gap-1.5">
-              {Array.from({ length: totalSlides }).map((_, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => goToSlide(idx)}
-                  className={`w-9 h-9 font-mono font-black text-xs uppercase border-3 border-ink transition-all cursor-pointer ${
-                    currentSlide === idx
-                      ? "bg-primary text-ink shadow-brutal-sm -translate-y-0.5"
-                      : "bg-paper text-ink hover:bg-muted active:translate-y-0"
-                  }`}
-                  data-cursor="link"
-                  aria-label={`Buka slide ${idx + 1}`}
-                >
-                  0{idx + 1}
-                </button>
-              ))}
             </div>
 
             {/* Prev & Next Looping Buttons */}
             <div className="flex items-center gap-2">
               <button
-                onClick={prevSlide}
-                aria-label="Proyek Sebelumnya"
+                onClick={prevSection}
+                aria-label={t.projects.prevButton}
                 className="flex items-center justify-center gap-1 font-mono font-bold text-xs uppercase px-3.5 py-2.5 bg-paper text-ink border-3 border-ink shadow-brutal-sm hover:bg-primary active:translate-x-0.5 active:translate-y-0.5 cursor-pointer transition-all"
                 data-cursor="link"
               >
                 <ChevronLeft className="w-4 h-4 stroke-[3]" />
-                <span className="hidden sm:inline">PREV</span>
+                <span className="hidden sm:inline">{t.projects.prevButton}</span>
               </button>
               <button
-                onClick={nextSlide}
-                aria-label="Proyek Selanjutnya"
+                onClick={nextSection}
+                aria-label={t.projects.nextButton}
                 className="flex items-center justify-center gap-1 font-mono font-bold text-xs uppercase px-3.5 py-2.5 bg-primary text-ink border-3 border-ink shadow-brutal-sm hover:bg-[#ffe666] active:translate-x-0.5 active:translate-y-0.5 cursor-pointer transition-all"
                 data-cursor="link"
               >
-                <span className="hidden sm:inline">NEXT</span>
+                <span className="hidden sm:inline">{t.projects.nextButton}</span>
                 <ChevronRight className="w-4 h-4 stroke-[3]" />
               </button>
             </div>
           </div>
         </div>
 
-        {/* Carousel Slide Area with Looping Batches */}
+        {/* 3 Section Category Selector Tabs */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-14">
+          {sections.map((section, idx) => {
+            const isActive = currentSectionIndex === idx;
+
+            return (
+              <button
+                key={section.key}
+                onClick={() => goToSection(idx)}
+                className={`p-3.5 border-4 border-ink font-mono font-black text-xs md:text-sm uppercase tracking-wide flex items-center justify-between transition-all cursor-pointer ${
+                  isActive
+                    ? "bg-primary text-ink shadow-brutal-sm -translate-y-1"
+                    : "bg-paper text-ink/70 hover:text-ink hover:bg-muted active:translate-y-0"
+                }`}
+                data-cursor="link"
+              >
+                <span>{section.label}</span>
+                <span className={`px-2 py-0.5 border-2 border-ink text-xs ${isActive ? "bg-paper text-ink" : "bg-primary text-ink"}`}>
+                  0{section.count}
+                </span>
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Carousel Slide Area: 3 Tilted Cards per Section */}
         <div className="relative min-h-[700px]">
           <AnimatePresence mode="wait" custom={direction}>
             <motion.div
-              key={currentSlide}
+              key={currentSectionIndex}
               custom={direction}
               initial={{ opacity: 0, x: direction > 0 ? 60 : -60 }}
               animate={{ opacity: 1, x: 0 }}
@@ -186,7 +206,7 @@ export const Projects: React.FC = () => {
                       {/* Project Info */}
                       <div className={`lg:col-span-6 flex flex-col items-start ${isEven ? "lg:col-start-1" : ""}`}>
                         <div className="font-mono font-bold text-xs text-ink/70 uppercase mb-2">
-                          PROYEK #{project.number}
+                          #{project.number} • {activeSection.key.toUpperCase()}
                         </div>
 
                         <h3 className="font-display font-black uppercase text-2xl md:text-3xl text-ink leading-tight mb-4 group-hover:text-accent-pink transition-colors">
@@ -214,10 +234,10 @@ export const Projects: React.FC = () => {
                           <BrutalistButton
                             variant="primary"
                             size="sm"
-                            onClick={() => setSelectedProject(project)}
+                            onClick={() => setSelectedProjectId(project.id)}
                             icon={<ArrowUpRight className="w-4 h-4 stroke-[3]" />}
                           >
-                            BACA STUDI KASUS
+                            {t.projects.caseStudyButton}
                           </BrutalistButton>
                           <BrutalistButton
                             href={project.caseStudy.liveUrl}
@@ -227,7 +247,7 @@ export const Projects: React.FC = () => {
                             size="sm"
                             icon={<ExternalLink className="w-4 h-4 stroke-[3]" />}
                           >
-                            LIVE DEMO
+                            {t.projects.demoButton}
                           </BrutalistButton>
                         </div>
 
@@ -244,21 +264,23 @@ export const Projects: React.FC = () => {
         {/* Carousel Bottom Pagination Bar */}
         <div className="mt-12 pt-6 border-t-3 border-dashed border-ink/40 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="font-mono text-xs text-ink/70">
-            * Gunakan tombol panah keyboard (← / →) atau tombol di atas untuk melihat proyek lainnya.
+            {lang === "id"
+              ? "* Gunakan tombol panah keyboard (← / →) atau tombol di atas untuk melihat 3 bagian proyek lainnya."
+              : "* Use keyboard arrow keys (← / →) or controls above to navigate between project categories."}
           </div>
 
           <div className="flex items-center gap-2">
             <button
-              onClick={prevSlide}
+              onClick={prevSection}
               className="font-mono font-bold text-xs uppercase px-4 py-2 bg-paper hover:bg-primary border-3 border-ink shadow-brutal-sm cursor-pointer transition-all"
             >
-              ← SEBELUMNYA
+              ← {t.projects.prevButton}
             </button>
             <button
-              onClick={nextSlide}
+              onClick={nextSection}
               className="font-mono font-bold text-xs uppercase px-4 py-2 bg-primary hover:bg-[#ffe666] border-3 border-ink shadow-brutal-sm cursor-pointer transition-all"
             >
-              SELANJUTNYA →
+              {t.projects.nextButton} →
             </button>
           </div>
         </div>
@@ -274,7 +296,7 @@ export const Projects: React.FC = () => {
             <div className="flex items-start justify-between gap-4 border-b-4 border-ink pb-4 mb-6">
               <div>
                 <span className="font-mono font-bold text-xs uppercase px-2.5 py-0.5 bg-primary border-2 border-ink inline-block mb-2">
-                  STUDI KASUS #{selectedProject.number}
+                  {t.projects.modal.title} #{selectedProject.number}
                 </span>
                 <h3 className="font-display font-black uppercase text-2xl sm:text-3xl text-ink">
                   {selectedProject.title}
@@ -282,8 +304,8 @@ export const Projects: React.FC = () => {
               </div>
 
               <button
-                onClick={() => setSelectedProject(null)}
-                aria-label="Tutup Modal"
+                onClick={() => setSelectedProjectId(null)}
+                aria-label={t.projects.modal.close}
                 className="p-2 bg-accent-pink text-ink border-3 border-ink shadow-brutal-sm hover:bg-primary active:translate-x-0.5 active:translate-y-0.5 cursor-pointer"
                 data-cursor="link"
               >
@@ -295,35 +317,35 @@ export const Projects: React.FC = () => {
             <div className="space-y-6 font-body text-sm sm:text-base">
               <div>
                 <h4 className="font-mono font-black text-xs uppercase text-ink tracking-wider bg-muted px-2 py-1 border-2 border-ink inline-block mb-2">
-                  01. TANTANGAN & MASALAH
+                  {t.projects.modal.problem}
                 </h4>
                 <p className="text-ink/90 leading-relaxed pl-1">{selectedProject.caseStudy.masalah}</p>
               </div>
 
               <div>
                 <h4 className="font-mono font-black text-xs uppercase text-ink tracking-wider bg-muted px-2 py-1 border-2 border-ink inline-block mb-2">
-                  02. PERAN & KONTRIBUSI
+                  {t.projects.modal.role}
                 </h4>
                 <p className="text-ink/90 leading-relaxed pl-1">{selectedProject.caseStudy.peran}</p>
               </div>
 
               <div>
                 <h4 className="font-mono font-black text-xs uppercase text-ink tracking-wider bg-muted px-2 py-1 border-2 border-ink inline-block mb-2">
-                  03. PROSES & EKSEKUSI
+                  {t.projects.modal.process}
                 </h4>
                 <p className="text-ink/90 leading-relaxed pl-1">{selectedProject.caseStudy.proses}</p>
               </div>
 
               <div>
                 <h4 className="font-mono font-black text-xs uppercase text-ink tracking-wider bg-muted px-2 py-1 border-2 border-ink inline-block mb-2">
-                  04. TEKNOLOGI & TOOLS
+                  {t.projects.modal.tools}
                 </h4>
                 <p className="font-mono font-bold text-sm text-ink/90 leading-relaxed pl-1">{selectedProject.caseStudy.tools}</p>
               </div>
 
               <div>
                 <h4 className="font-mono font-black text-xs uppercase text-ink tracking-wider bg-primary px-2 py-1 border-2 border-ink inline-block mb-2">
-                  05. DAMPAK & HASIL NYATA
+                  {t.projects.modal.result}
                 </h4>
                 <p className="text-ink font-semibold leading-relaxed pl-1">{selectedProject.caseStudy.hasil}</p>
               </div>
@@ -339,7 +361,7 @@ export const Projects: React.FC = () => {
                 size="md"
                 icon={<ExternalLink className="w-4 h-4 stroke-[3]" />}
               >
-                KUNJUNGI WEBSITE
+                {t.projects.modal.visitLive}
               </BrutalistButton>
               <BrutalistButton
                 href={selectedProject.caseStudy.repoUrl}
@@ -349,7 +371,7 @@ export const Projects: React.FC = () => {
                 size="md"
                 icon={<GithubIcon className="w-4 h-4" />}
               >
-                SOURCE CODE
+                {t.projects.modal.viewGithub}
               </BrutalistButton>
             </div>
 

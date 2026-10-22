@@ -2,9 +2,12 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { portfolioData } from "@/data/portfolio-data";
+import { Quote } from "lucide-react";
+import { useLanguage } from "@/components/providers/LanguageProvider";
 
 export const About: React.FC = () => {
+  const { t } = useLanguage();
+
   return (
     <section id="about" className="relative py-20 md:py-28 bg-paper border-b-4 border-ink">
       <div className="w-full max-w-[1320px] mx-auto px-4 md:px-8">
@@ -12,10 +15,10 @@ export const About: React.FC = () => {
         {/* Section Heading */}
         <div className="mb-14">
           <span className="font-mono text-xs md:text-sm font-bold uppercase tracking-widest bg-primary px-3 py-1 border-3 border-ink shadow-brutal-sm inline-block mb-3">
-            {portfolioData.about.heading.label}
+            {t.about.heading.label}
           </span>
           <h2 className="font-display font-extrabold uppercase text-clamp-h2 tracking-tight text-ink">
-            {portfolioData.about.heading.text}
+            {t.about.heading.text}
           </h2>
         </div>
 
@@ -30,8 +33,8 @@ export const About: React.FC = () => {
               <div className="relative border-4 border-ink bg-paper shadow-brutal-md -rotate-2 transition-transform duration-300 group-hover:rotate-0">
                 <div className="relative aspect-[4/3] overflow-hidden bg-ink">
                   <Image
-                    src={portfolioData.about.photo.src}
-                    alt={portfolioData.about.photo.alt}
+                    src={t.about.photo.src}
+                    alt={t.about.photo.alt}
                     fill
                     className="object-cover transition-all duration-300 group-hover:scale-105"
                     sizes="(max-width: 768px) 90vw, 450px"
@@ -41,11 +44,12 @@ export const About: React.FC = () => {
                 </div>
               </div>
 
-              {/* Sticky Note Fun Fact rotated 5deg bottom right */}
-              <div className="absolute -bottom-6 -right-4 md:-right-6 z-20 max-w-[240px]">
-                <div className="bg-primary text-ink border-3 border-ink shadow-brutal-sm p-3.5 rotate-6 font-mono font-bold text-xs uppercase leading-snug">
-                  <span className="block text-base mb-1">📌 FUN FACT</span>
-                  {portfolioData.about.photo.stickyNote}
+              {/* Sticky Note Quote rotated 6deg bottom right */}
+              <div className="absolute -bottom-8 -right-4 md:-right-6 z-20 max-w-[260px]">
+                <div className="bg-primary text-ink border-3 border-ink shadow-brutal-md p-3.5 rotate-6 font-mono font-bold text-xs leading-snug hover:rotate-0 transition-transform">
+                  <p className="font-mono font-black text-xs md:text-sm leading-snug tracking-tight">
+                    {t.about.photo.quoteText}
+                  </p>
                 </div>
               </div>
 
@@ -54,30 +58,29 @@ export const About: React.FC = () => {
 
           {/* Right: Text & Stats (Columns 6-12) */}
           <div className="lg:col-span-7 flex flex-col gap-6">
+            
+            {/* Identity Badges Strip */}
+            <div className="flex flex-wrap items-center gap-2">
+              {t.about.badges.map((badge, idx) => (
+                <span
+                  key={idx}
+                  className="font-mono text-[11px] md:text-xs font-black uppercase tracking-wider px-2.5 py-1 bg-paper border-2 border-ink shadow-[2px_2px_0_#0A0A0A] hover:-translate-y-0.5 transition-transform"
+                >
+                  {badge}
+                </span>
+              ))}
+            </div>
+
+            {/* Revamped Non-Boring Paragraphs */}
             <div className="space-y-4 font-body text-base md:text-lg leading-relaxed text-ink/90 font-medium">
-              <p>
-                Saya adalah seorang{" "}
-                <span className="bg-primary px-1.5 py-0.5 border-2 border-ink font-bold text-ink inline-block">
-                  Fullstack Developer
-                </span>{" "}
-                yang berdedikasi membangun aplikasi web interaktif, performa tinggi, dan scalable. Dengan fondasi kuat pada arsitektur{" "}
-                <span className="bg-accent-pink/40 px-1.5 py-0.5 border-2 border-ink font-bold inline-block">
-                  Next.js, TypeScript, & Tailwind CSS
-                </span>
-                , saya menghubungkan estetika visual yang radikal dengan sistem backend yang tangguh.
-              </p>
-              <p>
-                Bagi saya, web bukan sekadar deretan baris instruksi logika, melainkan sebuah kerajinan digital. Saya menaruh perhatian mendalam pada{" "}
-                <span className="bg-primary px-1.5 py-0.5 border-2 border-ink font-bold inline-block">
-                  Core Web Vitals
-                </span>
-                , responsivitas mikro, struktur semantik SEO, dan estetika neo-brutalisme yang lugas dan fungsional.
-              </p>
+              {t.about.paragraphs.map((p, idx) => (
+                <p key={idx}>{p}</p>
+              ))}
             </div>
 
             {/* 3 Stats Boxes */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-6">
-              {portfolioData.about.stats.map((stat, idx) => (
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4">
+              {t.about.stats.map((stat, idx) => (
                 <StatCard
                   key={idx}
                   value={stat.value}

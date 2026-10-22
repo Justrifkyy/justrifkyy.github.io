@@ -4,9 +4,11 @@ import React from "react";
 import { Download, FileText, Folder } from "lucide-react";
 import confetti from "canvas-confetti";
 import { BrutalistButton } from "../ui/BrutalistButton";
-import { portfolioData } from "@/data/portfolio-data";
+import { useLanguage } from "@/components/providers/LanguageProvider";
 
 export const Downloads: React.FC = () => {
+  const { t } = useLanguage();
+
   const triggerConfetti = () => {
     confetti({
       particleCount: 80,
@@ -23,16 +25,16 @@ export const Downloads: React.FC = () => {
         {/* Section Heading */}
         <div className="mb-16">
           <span className="font-mono text-xs md:text-sm font-bold uppercase tracking-widest bg-primary px-3 py-1 border-3 border-ink shadow-brutal-sm inline-block mb-3">
-            {portfolioData.downloads.heading.label}
+            {t.downloads.heading.label}
           </span>
           <h2 className="font-display font-extrabold uppercase text-clamp-h2 tracking-tight text-ink">
-            {portfolioData.downloads.heading.text}
+            {t.downloads.heading.text}
           </h2>
         </div>
 
         {/* 2 Big Action Boxes */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
-          {portfolioData.downloads.items.map((item, idx) => {
+          {t.downloads.items.map((item, idx) => {
             const isPrimary = item.color === "primary";
 
             return (
@@ -83,7 +85,7 @@ export const Downloads: React.FC = () => {
         {/* Footnote */}
         <div className="mt-8 text-center">
           <p className="font-mono text-xs md:text-sm text-ink/70">
-            * {portfolioData.downloads.note}
+            * {t.downloads.note}
           </p>
         </div>
 

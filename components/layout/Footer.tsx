@@ -3,11 +3,12 @@
 import React from "react";
 import { ArrowUp } from "lucide-react";
 import { BrutalistButton } from "../ui/BrutalistButton";
-import { portfolioData } from "@/data/portfolio-data";
-
+import { useLanguage } from "@/components/providers/LanguageProvider";
 import { BrandLogo } from "../ui/BrandLogo";
 
 export const Footer: React.FC = () => {
+  const { t } = useLanguage();
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -21,13 +22,13 @@ export const Footer: React.FC = () => {
           <BrandLogo size="sm" withTag={false} />
           <span className="hidden sm:inline font-mono text-ink/40">|</span>
           <span className="font-mono font-bold text-xs md:text-sm uppercase text-ink">
-            {portfolioData.footer.left}
+            {t.footer.left}
           </span>
         </div>
 
         {/* Center: Tech note */}
         <div className="font-mono text-xs md:text-sm text-ink/80 text-center">
-          {portfolioData.footer.center}
+          {t.footer.center}
         </div>
 
         {/* Right: Scroll to top */}
@@ -38,7 +39,7 @@ export const Footer: React.FC = () => {
             size="sm"
             icon={<ArrowUp className="w-4 h-4 stroke-[3]" />}
           >
-            {portfolioData.footer.right}
+            {t.footer.right}
           </BrutalistButton>
         </div>
 

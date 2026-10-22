@@ -1,9 +1,11 @@
 "use client";
 
 import React from "react";
-import { portfolioData } from "@/data/portfolio-data";
+import { useLanguage } from "@/components/providers/LanguageProvider";
 
 export const Experience: React.FC = () => {
+  const { t } = useLanguage();
+
   return (
     <section id="experience" className="relative py-20 md:py-28 bg-paper border-b-4 border-ink">
       <div className="w-full max-w-[1320px] mx-auto px-4 md:px-8">
@@ -11,10 +13,10 @@ export const Experience: React.FC = () => {
         {/* Section Heading */}
         <div className="mb-16">
           <span className="font-mono text-xs md:text-sm font-bold uppercase tracking-widest bg-accent-blue text-paper px-3 py-1 border-3 border-ink shadow-brutal-sm inline-block mb-3">
-            {portfolioData.experience.heading.label}
+            {t.experience.heading.label}
           </span>
           <h2 className="font-display font-extrabold uppercase text-clamp-h2 tracking-tight text-ink">
-            {portfolioData.experience.heading.text}
+            {t.experience.heading.text}
           </h2>
         </div>
 
@@ -25,7 +27,7 @@ export const Experience: React.FC = () => {
 
           {/* Timeline Items */}
           <div className="flex flex-col gap-12 md:gap-16">
-            {portfolioData.experience.items.map((item, index) => {
+            {t.experience.items.map((item, index) => {
               const isEven = index % 2 === 1;
 
               return (
