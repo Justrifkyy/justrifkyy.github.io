@@ -104,7 +104,7 @@ export async function POST(req: Request) {
       from: `"Muhammad Rifky" <${gmailUser}>`,
       to: email,
       subject: `✨ Terima kasih telah menghubungi saya! — Muhammad Rifky`,
-      text: `Halo ${nama}!\n\nTerima kasih sudah menghubungi saya melalui portofolio. Pesan Anda sudah saya terima dengan baik.\n\nSaya akan segera meninjau dan merespon pesan Anda (biasanya dalam 1x24 jam).\n\nRingkasan pesan Anda:\n"${pesan}"\n\nSalam hangat,\nMuhammad Rifky\nSoftware Engineer | Web, Mobile (Android), Data Science & ML\nEmail: ${gmailUser}\nGitHub: https://github.com/Justrifkyy\nLinkedIn: https://www.linkedin.com/in/muh-rifky-saputra-scania`,
+      text: `Halo ${nama}!\n\nTerima kasih sudah menghubungi saya melalui portofolio. Pesan Anda sudah saya terima dengan baik.\n\nSaya akan segera meninjau dan merespon pesan Anda (biasanya dalam 1x24 jam).\n\nRingkasan pesan Anda:\n"${pesan}"\n\nSalam hangat,\nMuhammad Rifky\nSoftware Engineer | Web, Mobile (Android), Multi-Platform\nEmail: ${gmailUser}\nGitHub: https://github.com/Justrifkyy\nLinkedIn: https://www.linkedin.com/in/muh-rifky-saputra-scania`,
       html: `
         <!DOCTYPE html>
         <html>
@@ -153,7 +153,7 @@ export async function POST(req: Request) {
               <div class="sign">
                 Salam hangat,<br>
                 <span style="font-size: 17px; font-weight: 900;">Muhammad Rifky</span><br>
-                <span style="font-family: monospace; font-size: 12px; color: #555;">Software Engineer (Web, Mobile Android, Data Science & ML)</span>
+                <span style="font-family: monospace; font-size: 12px; color: #555;">Software Engineer (Web, Mobile Android, Multi-Platform)</span>
               </div>
             </div>
             <div class="footer">

@@ -2,11 +2,29 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { Quote } from "lucide-react";
+import { Quote, ArrowUpRight } from "lucide-react";
 import { useLanguage } from "@/components/providers/LanguageProvider";
+import { TechIconsFor } from "@/components/ui/TechIcon";
 
 export const About: React.FC = () => {
   const { t } = useLanguage();
+  const [repoCount, setRepoCount] = useState<number | null>(null);
+
+  useEffect(() => {
+    fetch("https://api.github.com/users/Justrifkyy")
+      .then((res) => {
+        if (!res.ok) throw new Error("Failed");
+        return res.json();
+      })
+      .then((data) => {
+        if (typeof data.public_repos === "number" && data.public_repos > 0) {
+          setRepoCount(data.public_repos);
+        }
+      })
+      .catch(() => {
+        // Fallback silently to static data
+      });
+  }, []);
 
   return (
     <section id="about" className="relative py-20 md:py-28 bg-paper border-b-4 border-ink">
@@ -46,7 +64,7 @@ export const About: React.FC = () => {
 
               {/* Sticky Note Quote rotated 6deg bottom right */}
               <div className="absolute -bottom-8 -right-4 md:-right-6 z-20 max-w-[260px]">
-                <div className="bg-primary text-ink border-3 border-ink shadow-brutal-md p-3.5 rotate-6 font-mono font-bold text-xs leading-snug hover:rotate-0 transition-transform">
+                <div className="bg-primary text-ink dark:text-[#0A0A0A] border-3 border-ink shadow-brutal-md p-3.5 rotate-6 font-mono font-bold text-xs leading-snug hover:rotate-0 transition-transform">
                   <p className="font-mono font-black text-xs md:text-sm leading-snug tracking-tight">
                     {t.about.photo.quoteText}
                   </p>
@@ -64,9 +82,10 @@ export const About: React.FC = () => {
               {t.about.badges.map((badge, idx) => (
                 <span
                   key={idx}
-                  className="font-mono text-[11px] md:text-xs font-black uppercase tracking-wider px-2.5 py-1 bg-paper border-2 border-ink shadow-[2px_2px_0_#0A0A0A] hover:-translate-y-0.5 transition-transform"
+                  className="font-mono text-[11px] md:text-xs font-black uppercase tracking-wider px-2.5 py-1 bg-paper dark:bg-[#12141D] border-2 border-ink shadow-[2px_2px_0_#0A0A0A] dark:shadow-[2px_2px_0_#00A3E0] hover:-translate-y-0.5 transition-transform inline-flex items-center gap-1.5"
                 >
-                  {badge}
+                  <TechIconsFor text={badge} className="w-3.5 h-3.5 shrink-0" />
+                  <span>{badge}</span>
                 </span>
               ))}
             </div>
@@ -78,15 +97,16 @@ export const About: React.FC = () => {
               ))}
             </div>
 
-            {/* 3 Stats Boxes */}
+            {/* 3 Stats Boxes (Clickable to GitHub) */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4">
               {t.about.stats.map((stat, idx) => (
                 <StatCard
                   key={idx}
-                  value={stat.value}
+                  value={idx === 0 && repoCount ? repoCount : stat.value}
                   suffix={stat.suffix}
                   label={stat.label}
                   color={stat.color}
+                  href={stat.href || "https://github.com/Justrifkyy"}
                 />
               ))}
             </div>
@@ -105,20 +125,22 @@ interface StatCardProps {
   suffix: string;
   label: string;
   color: "primary" | "accentPink" | "accentBlue";
+  href?: string;
 }
 
-const StatCard: React.FC<StatCardProps> = ({ value, suffix, label, color }) => {
+const StatCard: React.FC<StatCardProps> = ({ value, suffix, label, color, href }) => {
   const [displayValue, setDisplayValue] = useState(0);
-  const cardRef = useRef<HTMLDivElement>(null);
+  const cardRef = useRef<HTMLAnchorElement>(null);
   const animatedRef = useRef(false);
 
   const bgStyles = {
-    primary: "bg-primary",
-    accentPink: "bg-accent-pink",
-    accentBlue: "bg-accent-blue text-paper",
+    primary: "bg-primary text-ink dark:text-[#0A0A0A]",
+    accentPink: "bg-accent-pink text-ink dark:text-[#0A0A0A]",
+    accentBlue: "bg-accent-blue text-paper dark:text-[#0A0A0A]",
   };
 
   useEffect(() => {
+    animatedRef.current = false;
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting && !animatedRef.current) {
@@ -149,10 +171,20 @@ const StatCard: React.FC<StatCardProps> = ({ value, suffix, label, color }) => {
   }, [value]);
 
   return (
-    <div
+    <a
       ref={cardRef}
-      className={`border-4 border-ink shadow-brutal-sm p-5 flex flex-col justify-center ${bgStyles[color]} transition-transform hover:-translate-y-1 hover:shadow-brutal-md`}
+      href={href || "https://github.com/Justrifkyy"}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={`group relative border-4 border-ink shadow-brutal-sm p-5 flex flex-col justify-center ${bgStyles[color]} transition-all duration-150 hover:-translate-y-1 hover:shadow-brutal-md block cursor-pointer select-none`}
+      title="Buka profil GitHub @Justrifkyy ↗"
     >
+      {/* Top right pill badge */}
+      <div className="absolute top-2.5 right-2.5 flex items-center gap-1 font-mono text-[10px] font-black uppercase tracking-wider bg-ink text-paper dark:bg-[#0A0A0A] dark:text-[#FFFDF5] px-1.5 py-0.5 border border-ink opacity-70 group-hover:opacity-100 group-hover:scale-105 transition-all">
+        <span>GITHUB</span>
+        <ArrowUpRight className="w-3 h-3 stroke-[3]" />
+      </div>
+
       <div className="font-display font-black text-4xl md:text-5xl tracking-tight leading-none mb-2">
         <span>{displayValue}</span>
         <span>{suffix}</span>
@@ -160,6 +192,6 @@ const StatCard: React.FC<StatCardProps> = ({ value, suffix, label, color }) => {
       <div className="font-mono font-bold text-xs md:text-sm uppercase tracking-wide">
         {label}
       </div>
-    </div>
+    </a>
   );
 };

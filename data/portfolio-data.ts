@@ -30,6 +30,7 @@ export interface TimelineItem {
   title: string;
   org: string;
   summary: string;
+  tags?: string[];
 }
 
 export interface CertificateItem {
@@ -82,7 +83,7 @@ export interface PortfolioData {
     };
     badges: string[];
     paragraphs: string[];
-    stats: { value: number; suffix: string; label: string; color: "primary" | "accentPink" | "accentBlue" }[];
+    stats: { value: number; suffix: string; label: string; color: "primary" | "accentPink" | "accentBlue"; href?: string }[];
   };
   projects: {
     heading: { label: string; text: string };
@@ -219,8 +220,6 @@ export const portfolioDataId: PortfolioData = {
       1800,
       "Merancang solusi Multi-Platform yang skalabel.",
       1800,
-      "Eksplorasi Data Science, Machine Learning & Deep Learning.",
-      1800,
     ],
     cta: [
       { text: "LIHAT PROYEK", href: "#projects", variant: "primary" },
@@ -256,25 +255,43 @@ export const portfolioDataId: PortfolioData = {
   ],
 
   about: {
-    heading: { label: "01 / TENTANG SAYA", text: "KODE, SISTEM & DATA." },
+    heading: { label: "01 / TENTANG SAYA", text: "KODE & PERSPEKTIF." },
     photo: {
       src: "/images/about-photo.png",
       alt: "Muhammad Rifky sedang bekerja di laptop",
-      quoteText: '“I hate when people said "It works on my machine"”',
+      quoteText: 'I hate when people said "It works on my machine"',
     },
     badges: [
       "SOFTWARE ENGINEERING",
       "FLUTTER & ANDROID",
-      "DATA SCIENCE & ML/DL",
+      "MULTI-PLATFORM",
     ],
     paragraphs: [
       "Halo! Saya Muhammad Rifky, mahasiswa Teknik Informatika di Universitas Muslim Indonesia (semester 7) yang berfokus pada bidang Software Engineering. Saya aktif mengembangkan aplikasi Web, Mobile (Android), dan sistem Multi-Platform.",
       "Selain rekayasa perangkat lunak, saya juga memiliki ketertarikan mendalam di bidang Data Science, Machine Learning (ML), dan Deep Learning (DL). Saya senang mengeksplorasi analisis data, melatih model cerdas, serta mengintegrasikan kapabilitas AI ke dalam solusi perangkat lunak yang fungsional.",
     ],
     stats: [
-      { value: 9, suffix: "+", label: "Proyek Pilihan", color: "primary" },
-      { value: 7, suffix: " Sem", label: "Teknik Informatika", color: "accentPink" },
-      { value: 6, suffix: "+", label: "Sertifikasi Resmi", color: "accentBlue" },
+      {
+        value: 30,
+        suffix: "+",
+        label: "Repositori GitHub",
+        color: "primary",
+        href: "https://github.com/Justrifkyy?tab=repositories",
+      },
+      {
+        value: 5,
+        suffix: "+",
+        label: "Bahasa & Ekosistem",
+        color: "accentPink",
+        href: "https://github.com/Justrifkyy",
+      },
+      {
+        value: 3,
+        suffix: "+ Thn",
+        label: "Eksplorasi Kode Aktif",
+        color: "accentBlue",
+        href: "https://github.com/Justrifkyy",
+      },
     ],
   },
 
@@ -551,18 +568,17 @@ export const portfolioDataId: PortfolioData = {
         ],
       },
       {
-        title: "MULTI-PLATFORM & DATA TOOLS",
+        title: "MULTI-PLATFORM & TOOLS",
         color: "accentBlue",
         items: [
           "Cross-Platform System Architecture",
-          "Python & Data Science",
-          "Machine Learning & Deep Learning",
-          "TensorFlow Lite & AI Models",
           "Git & GitHub Actions CI/CD",
           "Docker Containers",
           "Turso & Cloud Databases",
           "Clean Architecture",
           "Linux Shell & Troubleshooting",
+          "Figma & UI Prototyping",
+          "REST & WebSocket APIs",
         ],
       },
     ],
@@ -572,22 +588,39 @@ export const portfolioDataId: PortfolioData = {
     heading: { label: "04 / JEJAK", text: "PENGALAMAN & PENDIDIKAN" },
     items: [
       {
+        period: "JULI 2026 — AGUSTUS 2026",
+        title: "Backend Developer — Kuliah Kerja Profesi (KKP)",
+        org: "Manga Travel",
+        summary: "Melaksanakan program Kuliah Kerja Profesi (KKP) selama satu bulan penuh sebagai Backend Developer. Bertanggung jawab merancang arsitektur RESTful API, optimalisasi database, dan integrasi modul sistem layanan pemesanan perjalanan Manga Travel.",
+        tags: ["PHP", "Laravel", "REST API", "MySQL"],
+      },
+      {
+        period: "DESEMBER 2024 — SEKARANG",
+        title: "Asisten Laboratorium Komputer",
+        org: "Laboratorium Komputer — Universitas Muslim Indonesia (UMI)",
+        summary: "Bertugas mendampingi jalannya praktikum pemrograman dan rekayasa perangkat lunak mahasiswa, membimbing problem-solving kode, serta membantu pemeliharaan infrastruktur laboratorium komputer.",
+        tags: ["Java", "Linux", "Troubleshooting", "Clean Architecture"],
+      },
+      {
         period: "2023 — SEKARANG (2026)",
         title: "S1 Teknik Informatika (Semester 7)",
         org: "Universitas Muslim Indonesia (UMI)",
         summary: "Mendalami Software Engineering, struktur data, dan rekayasa perangkat lunak. Aktif membangun platform digital InformationPerisai-System untuk UKM PERISAI UMI serta berbagai aplikasi Web dan Mobile Android.",
+        tags: ["Next.js", "Flutter", "Android", "TypeScript"],
       },
       {
         period: "2022",
         title: "Praktik Kerja Lapangan (PKL) / IT Support",
         org: "MD Komputer Maros",
         summary: "Menangani perbaikan hardware & software komputer, instalasi sistem operasi, perakitan PC, konfigurasi jaringan lokal (LAN), serta pelayanan teknis perangkat konsumen.",
+        tags: ["Hardware", "Linux", "Troubleshooting"],
       },
       {
         period: "2019 — 2022",
         title: "Teknik Komputer dan Jaringan (TKJ)",
         org: "SMK Kebangsaan Indonesia Maros",
         summary: "Mempelajari dasar rekayasa jaringan komputer dan pemrograman. Berperan aktif sebagai Asisten Lab Pemrograman dan IT Support sekolah dalam pemeliharaan lab komputer serta pendampingan praktikum siswa.",
+        tags: ["Networking", "Troubleshooting", "Basics"],
       },
     ],
   },
@@ -775,8 +808,6 @@ export const portfolioDataEn: PortfolioData = {
       1800,
       "Architecting resilient Multi-Platform systems.",
       1800,
-      "Exploring Data Science, Machine Learning & Deep Learning.",
-      1800,
     ],
     cta: [
       { text: "VIEW PROJECTS", href: "#projects", variant: "primary" },
@@ -812,25 +843,43 @@ export const portfolioDataEn: PortfolioData = {
   ],
 
   about: {
-    heading: { label: "01 / ABOUT ME", text: "CODE, SYSTEMS & DATA." },
+    heading: { label: "01 / ABOUT ME", text: "CODE & PERSPECTIVES." },
     photo: {
       src: "/images/about-photo.png",
       alt: "Muhammad Rifky coding on a laptop",
-      quoteText: '“I hate when people said "It works on my machine"”',
+      quoteText: 'I hate when people said "It works on my machine"',
     },
     badges: [
       "SOFTWARE ENGINEERING",
       "FLUTTER & ANDROID",
-      "DATA SCIENCE & ML/DL",
+      "MULTI-PLATFORM",
     ],
     paragraphs: [
       "Hi! I'm Muhammad Rifky, an Informatics Engineering student at Universitas Muslim Indonesia (7th semester) focusing on Software Engineering. I build Web, Mobile (Android), and Multi-Platform applications.",
       "Beyond core software engineering, I have a deep interest in Data Science, Machine Learning (ML), and Deep Learning (DL). I enjoy analyzing datasets, experimenting with intelligent models, and bridging the gap between data-driven intelligence and production-grade software.",
     ],
     stats: [
-      { value: 9, suffix: "+", label: "Featured Projects", color: "primary" },
-      { value: 7, suffix: " Sem", label: "Informatics Eng.", color: "accentPink" },
-      { value: 6, suffix: "+", label: "Official Credentials", color: "accentBlue" },
+      {
+        value: 30,
+        suffix: "+",
+        label: "GitHub Repositories",
+        color: "primary",
+        href: "https://github.com/Justrifkyy?tab=repositories",
+      },
+      {
+        value: 5,
+        suffix: "+",
+        label: "Languages & Stacks",
+        color: "accentPink",
+        href: "https://github.com/Justrifkyy",
+      },
+      {
+        value: 3,
+        suffix: "+ Yrs",
+        label: "Active Code Building",
+        color: "accentBlue",
+        href: "https://github.com/Justrifkyy",
+      },
     ],
   },
 
@@ -1107,18 +1156,17 @@ export const portfolioDataEn: PortfolioData = {
         ],
       },
       {
-        title: "MULTI-PLATFORM & DATA TOOLS",
+        title: "MULTI-PLATFORM & TOOLS",
         color: "accentBlue",
         items: [
           "Cross-Platform System Architecture",
-          "Python & Data Science",
-          "Machine Learning & Deep Learning",
-          "TensorFlow Lite & AI Models",
           "Git & GitHub Actions CI/CD",
           "Docker Containers",
           "Turso & Cloud Databases",
           "Clean Architecture",
           "Linux Shell & Troubleshooting",
+          "Figma & UI Prototyping",
+          "REST & WebSocket APIs",
         ],
       },
     ],
@@ -1128,22 +1176,39 @@ export const portfolioDataEn: PortfolioData = {
     heading: { label: "04 / TIMELINE", text: "EXPERIENCE & EDUCATION" },
     items: [
       {
+        period: "JUL 2026 — AUG 2026",
+        title: "Backend Developer — University Internship (KKP)",
+        org: "Manga Travel",
+        summary: "Completed a 1-month intensive university internship (Kuliah Kerja Profesi) focused on backend development. Architected RESTful API endpoints, managed database workflows, and optimized travel booking service integrations.",
+        tags: ["PHP", "Laravel", "REST API", "MySQL"],
+      },
+      {
+        period: "DEC 2024 — PRESENT",
+        title: "Computer Laboratory Assistant",
+        org: "Informatics Computer Laboratory — Universitas Muslim Indonesia (UMI)",
+        summary: "Facilitating student laboratory practicums across software programming, algorithms, and data structures. Assisting in code debugging, student assignment reviews, and computer lab server maintenance.",
+        tags: ["Java", "Linux", "Troubleshooting", "Clean Architecture"],
+      },
+      {
         period: "2023 — PRESENT (2026)",
         title: "B.Sc. Informatics Engineering (7th Sem)",
         org: "Universitas Muslim Indonesia (UMI)",
         summary: "Focusing on Software Engineering, data structures, and application development. Built the research platform InformationPerisai-System for UKM PERISAI UMI along with various Web and Android mobile systems.",
+        tags: ["Next.js", "Flutter", "Android", "TypeScript"],
       },
       {
         period: "2022",
         title: "IT Support & Field Work Practice (PKL)",
         org: "MD Komputer Maros",
         summary: "Handled computer hardware & software troubleshooting, operating system installation, PC assembly, local network configuration (LAN), and technical device support.",
+        tags: ["Hardware", "Linux", "Troubleshooting"],
       },
       {
         period: "2019 — 2022",
         title: "Computer & Network Engineering (TKJ)",
         org: "SMK Kebangsaan Indonesia Maros",
         summary: "Learned computer networking and software fundamentals. Actively served as Programming Lab Assistant and IT Support for computer lab maintenance and student mentoring.",
+        tags: ["Networking", "Troubleshooting", "Basics"],
       },
     ],
   },

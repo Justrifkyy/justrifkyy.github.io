@@ -2,6 +2,7 @@
 
 import React from "react";
 import { useLanguage } from "@/components/providers/LanguageProvider";
+import { TechIcon } from "@/components/ui/TechIcon";
 
 export const Experience: React.FC = () => {
   const { t } = useLanguage();
@@ -64,6 +65,21 @@ export const Experience: React.FC = () => {
                       <p className="font-body text-sm md:text-base text-ink/80 leading-relaxed font-medium">
                         {item.summary}
                       </p>
+
+                      {/* Tech Stack / Focus Chips */}
+                      {item.tags && item.tags.length > 0 && (
+                        <div className="flex flex-wrap gap-2 mt-4 pt-4 border-t-2 border-dashed border-ink/30">
+                          {item.tags.map((tag) => (
+                            <span
+                              key={tag}
+                              className="font-mono font-bold text-xs px-2.5 py-1 bg-paper border-2 border-ink shadow-[2px_2px_0_#0A0A0A] inline-flex items-center gap-1.5 hover:-translate-y-0.5 transition-transform"
+                            >
+                              <TechIcon name={tag} className="w-3.5 h-3.5 shrink-0" />
+                              <span>{tag}</span>
+                            </span>
+                          ))}
+                        </div>
+                      )}
                     </div>
                   </div>
 

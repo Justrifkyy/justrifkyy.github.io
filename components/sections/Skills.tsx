@@ -2,6 +2,7 @@
 
 import React from "react";
 import { useLanguage } from "@/components/providers/LanguageProvider";
+import { TechIconsFor } from "@/components/ui/TechIcon";
 
 export const Skills: React.FC = () => {
   const { t } = useLanguage();
@@ -59,9 +60,10 @@ export const Skills: React.FC = () => {
                   return (
                     <div
                       key={skill}
-                      className={`font-mono text-xs md:text-sm font-bold uppercase px-3.5 py-2 bg-paper text-ink border-3 border-ink shadow-brutal-sm transition-all duration-150 hover:-translate-y-1 ${rotClass} ${hoverColors[group.color]} cursor-default select-none`}
+                      className={`font-mono text-xs md:text-sm font-bold uppercase px-3.5 py-2 bg-paper text-ink border-3 border-ink shadow-brutal-sm transition-all duration-150 hover:-translate-y-1 ${rotClass} ${hoverColors[group.color]} cursor-default select-none inline-flex items-center gap-2`}
                     >
-                      {skill}
+                      <TechIconsFor text={skill} className="w-4 h-4 shrink-0" />
+                      <span>{skill}</span>
                     </div>
                   );
                 })}

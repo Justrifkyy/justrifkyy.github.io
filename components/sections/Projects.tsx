@@ -5,6 +5,7 @@ import Image from "next/image";
 import { ArrowUpRight, ExternalLink, X, ChevronLeft, ChevronRight } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { BrutalistButton } from "../ui/BrutalistButton";
+import { TechIcon } from "../ui/TechIcon";
 import { ProjectItem } from "@/data/portfolio-data";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 
@@ -222,9 +223,10 @@ export const Projects: React.FC = () => {
                           {project.tags.map((tag) => (
                             <span
                               key={tag}
-                              className="font-mono font-bold text-xs px-2.5 py-1 bg-paper border-2 border-ink shadow-[2px_2px_0_#0A0A0A]"
+                              className="font-mono font-bold text-xs px-2.5 py-1 bg-paper border-2 border-ink shadow-[2px_2px_0_#0A0A0A] inline-flex items-center gap-1.5 hover:-translate-y-0.5 transition-transform"
                             >
-                              {tag}
+                              <TechIcon name={tag} className="w-3.5 h-3.5 shrink-0" />
+                              <span>{tag}</span>
                             </span>
                           ))}
                         </div>
@@ -340,7 +342,20 @@ export const Projects: React.FC = () => {
                 <h4 className="font-mono font-black text-xs uppercase text-ink tracking-wider bg-muted px-2 py-1 border-2 border-ink inline-block mb-2">
                   {t.projects.modal.tools}
                 </h4>
-                <p className="font-mono font-bold text-sm text-ink/90 leading-relaxed pl-1">{selectedProject.caseStudy.tools}</p>
+                <div className="flex flex-wrap gap-2 pt-1 pl-1">
+                  {selectedProject.caseStudy.tools.split(",").map((tool) => {
+                    const clean = tool.trim();
+                    return (
+                      <span
+                        key={clean}
+                        className="font-mono font-bold text-xs px-2.5 py-1 bg-paper border-2 border-ink shadow-[2px_2px_0_#0A0A0A] inline-flex items-center gap-1.5"
+                      >
+                        <TechIcon name={clean} className="w-3.5 h-3.5 shrink-0" />
+                        <span>{clean}</span>
+                      </span>
+                    );
+                  })}
+                </div>
               </div>
 
               <div>
