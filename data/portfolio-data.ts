@@ -162,6 +162,7 @@ export interface PortfolioData {
       successTitle: string;
       successMessage: string;
       resetButton: string;
+      mailtoFallback: string;
     };
     directLabel: string;
     copyButton: string;
@@ -745,6 +746,7 @@ export const portfolioDataId: PortfolioData = {
       successTitle: "★ PESAN BERHASIL TERKIRIM! ★",
       successMessage: "Terima kasih! Saya akan membalas pesan Anda sesegera mungkin.",
       resetButton: "KIRIM PESAN LAIN",
+      mailtoFallback: "ATAU BUKA DRAFT DI GMAIL / EMAIL CLIENT",
     },
     directLabel: "HUBUNGI LANGSUNG VIA EMAIL:",
     copyButton: "SALIN EMAIL",
@@ -1333,6 +1335,7 @@ export const portfolioDataEn: PortfolioData = {
       successTitle: "★ MESSAGE SENT SUCCESSFULLY! ★",
       successMessage: "Thank you! I will get back to you as soon as possible.",
       resetButton: "SEND ANOTHER MESSAGE",
+      mailtoFallback: "OR OPEN DRAFT IN GMAIL / EMAIL APP",
     },
     directLabel: "REACH OUT DIRECTLY VIA EMAIL:",
     copyButton: "COPY EMAIL",

@@ -24,7 +24,17 @@ export async function POST(req: Request) {
     }
 
     const gmailUser = process.env.GMAIL_USER || "rifky020504@gmail.com";
-    const gmailPass = process.env.GMAIL_APP_PASSWORD || "mznpqnfshipniclb";
+    const gmailPass = process.env.GMAIL_APP_PASSWORD;
+
+    if (!gmailPass) {
+      return NextResponse.json(
+        {
+          success: false,
+          error: "Konfigurasi kredensial SMTP belum diisi di environment variable.",
+        },
+        { status: 500 }
+      );
+    }
 
     const transporter = nodemailer.createTransport({
       service: "gmail",
