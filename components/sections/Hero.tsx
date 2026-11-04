@@ -25,6 +25,7 @@ export const Hero: React.FC = () => {
           <div className="lg:col-span-7 flex flex-col items-start z-10">
             {/* Mega Heading */}
             <h1 className="font-display font-extrabold uppercase tracking-tighter text-ink text-clamp-h1 lg:text-mega leading-[0.9] flex flex-col mb-6">
+              <span className="sr-only">Muhammad Rifky Saputra Scania — Software Engineer Portfolio</span>
               <span>{t.hero.headingLines[0]}</span>
               <span className="relative inline-block w-fit my-1">
                 <span className="absolute inset-0 bg-primary -rotate-2 border-3 border-ink -z-10 translate-y-1 shadow-brutal-sm" />

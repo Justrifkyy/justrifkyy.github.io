@@ -295,6 +295,48 @@ export const TechIcon: React.FC<TechIconProps> = ({ name, className = "w-4 h-4" 
     );
   }
 
+  // 28. Prisma
+  if (normalized.includes("prisma")) {
+    return (
+      <svg viewBox="0 0 24 24" className={className} fill="none" aria-label="Prisma">
+        <path d="M12.3 2.5L21.5 20.5c.3.6-.1 1.3-.8 1.3H3.3c-.7 0-1.1-.7-.8-1.3L11.7 2.5c.3-.6 1.1-.6 1.4 0z" fill="#2D3748" />
+        <path d="M12.3 2.5L20 20H4L12.3 2.5z" fill="#16658E" />
+        <path d="M12.3 2.5L14 20H4L12.3 2.5z" fill="#5A67D8" />
+      </svg>
+    );
+  }
+
+  // 29. PostgreSQL
+  if (normalized.includes("postgres") || normalized.includes("postgresql")) {
+    return (
+      <svg viewBox="0 0 24 24" className={className} fill="#336791" aria-label="PostgreSQL">
+        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm3.8 14.5c-.8.6-2 .8-3.4.8-1.5 0-2.8-.3-3.6-1-.8-.7-1.1-1.7-1.1-2.8 0-1.8.8-3.1 2.3-3.9 1.5-.8 3.5-1.1 5.8-1v1.6c-2 0-3.6.3-4.6.8-.9.5-1.4 1.3-1.4 2.4 0 .7.3 1.3.8 1.7.5.4 1.3.6 2.3.6 1.1 0 2-.2 2.6-.7.6-.5.9-1.2.9-2.1v-2.3h-3.4V9.2h5.3v5.6c0 1.1-.4 1.9-1.6 2.2z" />
+      </svg>
+    );
+  }
+
+  // 30. Multi-Platform / Cross-Platform (Desktop + Mobile Device)
+  if (normalized.includes("multiplatform") || normalized.includes("multi-platform") || normalized.includes("cross-platform")) {
+    return (
+      <svg viewBox="0 0 24 24" className={className} fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-label="Multi-Platform">
+        <rect x="2" y="3" width="13" height="9" rx="1.5" />
+        <path d="M5 16h7M8.5 12v4" />
+        <rect x="14" y="8" width="8" height="13" rx="1.5" />
+        <circle cx="18" cy="18" r="0.75" fill="currentColor" />
+      </svg>
+    );
+  }
+
+  // 31. Software Engineering / Terminal
+  if (normalized.includes("software engineering") || normalized.includes("software eng")) {
+    return (
+      <svg viewBox="0 0 24 24" className={className} fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-label="Software Engineering">
+        <polyline points="4 17 10 11 4 5" />
+        <line x1="12" y1="19" x2="20" y2="19" />
+      </svg>
+    );
+  }
+
   // Default Fallback: Code Brackets Icon
   return (
     <svg viewBox="0 0 24 24" className={className} fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-label={name}>
@@ -332,6 +374,9 @@ export const TechIconsFor: React.FC<{ text: string; className?: string }> = ({
     ["mysql", "mysql"],
     ["sqlite", "sqlite"],
     ["turso", "turso"],
+    ["prisma", "prisma"],
+    ["postgres", "postgresql"],
+    ["midtrans", "midtrans"],
     ["docker", "docker"],
     ["github", "github"],
     ["git", "git"],
@@ -342,6 +387,9 @@ export const TechIconsFor: React.FC<{ text: string; className?: string }> = ({
     ["node", "node.js"],
     ["api", "rest api"],
     ["architecture", "clean architecture"],
+    ["software engineering", "software engineering"],
+    ["multi-platform", "multiplatform"],
+    ["multiplatform", "multiplatform"],
   ];
 
   for (const [needle, key] of checks) {

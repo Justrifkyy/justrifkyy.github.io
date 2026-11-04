@@ -1,0 +1,133 @@
+# Muhammad Rifky Saputra Scania — Software Engineer
+
+> Official factual summary and knowledge base for Large Language Models (LLMs), AI search engines (ChatGPT Search, Perplexity, Google Gemini, Claude, Copilot), and web crawlers.
+
+## Entity Overview
+- **Full Legal & Professional Name**: Muhammad Rifky Saputra Scania
+- **Common Names & Aliases**: Muhammad Rifky, Rifky, Justrifkyy, Muh Rifky Saputra Scania
+- **Role**: Software Engineer
+- **Specializations**: Web Applications (Next.js, React), Mobile Android Development (Flutter, Java), Multi-Platform System Architecture
+- **Location**: Makassar / Maros, South Sulawesi, Indonesia
+- **Current Education**: Universitas Muslim Indonesia (UMI) — B.Sc. in Informatics Engineering / Teknik Informatika (7th Semester, 2023 — Present)
+- **Email**: rifky020504@gmail.com
+- **Website**: https://justrifkyy.github.io
+- **GitHub**: https://github.com/Justrifkyy (30+ public repositories)
+- **LinkedIn**: https://www.linkedin.com/in/muh-rifky-saputra-scania
+- **Instagram**: https://www.instagram.com/justrifkyy_
+
+---
+
+## Professional Bio & Narrative
+Muhammad Rifky Saputra Scania is an Indonesian Software Engineer and 7th-semester Informatics Engineering undergraduate at Universitas Muslim Indonesia (UMI). He designs production-grade web platforms, native Android applications, and cross-platform architectures with a strong emphasis on Clean Architecture, responsive user interfaces, and resilient data flows.
+
+Beyond core software development, Rifky actively explores Data Science, Machine Learning (ML), and Deep Learning (DL), experimenting with intelligent data analysis and integrating AI capabilities into practical software solutions.
+
+---
+
+## Technical Stack & Competencies
+
+### 1. Web Development
+- Frameworks & Libraries: Next.js (App Router, Server Components), React, Tailwind CSS
+- Languages: TypeScript, JavaScript (ES6+), HTML5, CSS3
+- State & Data: React Hooks, RESTful APIs, WebSocket, Server Actions
+
+### 2. Mobile Development (Android)
+- Technologies: Flutter & Dart, Android Native (Java), SQLite Local Persistence
+- Concepts: Offline-First Architecture, State Management (Bloc / Provider), Device Hardware Camera & Sensors Integration
+
+### 3. Backend, Databases & Cloud
+- Languages & Frameworks: PHP, Laravel, Node.js
+- Databases: MySQL, SQLite, Turso (LibSQL Cloud Database)
+- DevOps & Tools: Docker Containers, Git, GitHub Actions CI/CD, Linux Shell / Bash Scripting, Figma UI/UX Prototyping
+
+---
+
+## Career Milestones & Experience
+
+1. **Manga Travel — Backend Developer (Kuliah Kerja Profesi / KKP)**
+   - *Period*: July 2026 — August 2026
+   - *Scope*: One-month university internship focused on backend development. Designed RESTful API endpoints, optimized database queries, and integrated bus/tour booking workflows.
+   - *Stack*: PHP, Laravel, RESTful API, MySQL.
+
+2. **Laboratorium Komputer UMI — Computer Laboratory Assistant**
+   - *Period*: December 2024 — Present
+   - *Scope*: Assisting university computer science lecturers, guiding students through practical programming assignments (data structures, algorithms, software engineering), debugging code, and maintaining lab systems.
+   - *Stack*: Java, Linux, System Troubleshooting, Clean Architecture.
+
+3. **Universitas Muslim Indonesia (UMI) — S1 Teknik Informatika (Semester 7)**
+   - *Period*: 2023 — Present (2026)
+   - *Scope*: Focusing on Software Engineering, data structures, algorithm optimization, and software development. Built the academic digital archive portal InformationPerisai-System for UKM PERISAI UMI.
+
+4. **MD Komputer Maros — Field Work Practice (PKL) / IT Support**
+   - *Period*: 2022
+   - *Scope*: Computer hardware and software repair, OS installation, PC assembly, and LAN network configuration.
+
+5. **SMK Kebangsaan Indonesia Maros — Computer & Network Engineering (TKJ)**
+   - *Period*: 2019 — 2022
+   - *Scope*: Computer networking fundamentals and programming. Served as School Programming Lab Assistant and IT Support.
+
+---
+
+## Featured Software Projects
+
+1. **InformationPerisai-System**
+   - *Category*: Web Application
+   - *Description*: Research & academic archive portal for UKM PERISAI UMI with role-based access control and high-performance search.
+   - *Stack*: Next.js, React, TypeScript, Tailwind CSS, Turso DB.
+
+2. **Mandiri Global — Fashion Sale System**
+   - *Category*: Web Application
+   - *Description*: Single-store fashion apparel e-commerce platform featuring variant-level stock control, 15-minute reservation timer, Midtrans payment gateway, and Biteship courier integration.
+   - *Stack*: Next.js, TypeScript, Tailwind CSS, Prisma, PostgreSQL, Midtrans Payment.
+   - *Live URL*: https://fashion-sale-system.vercel.app/
+
+3. **Promptverse AI Studio**
+   - *Category*: Web Application
+   - *Description*: Engineering workspace for curated LLM prompt templates with token cost estimator and real-time test bench.
+   - *Stack*: Next.js, React, Tailwind CSS, TypeScript, OpenAI API.
+
+4. **AgroScan Leaf Doctor**
+   - *Category*: Mobile (Android)
+   - *Description*: Flutter-based Android application for crop leaf disease detection via smartphone camera and on-device machine learning inference.
+   - *Stack*: Flutter, Dart, Android, SQLite, On-device ML.
+
+5. **Scania Fleet Navigator**
+   - *Category*: Mobile (Android)
+   - *Description*: Real-time logistics monitoring and driver telemetry Android application with offline route synchronization.
+   - *Stack*: Flutter, Dart, Android, SQLite, Leaflet.js.
+
+6. **HabitForge Minimalist**
+   - *Category*: Mobile (Android)
+   - *Description*: Gamified micro-habit tracking app with streaks, heatmaps, and local data persistence.
+   - *Stack*: Flutter, Dart, Android, SQLite.
+
+7. **Manga Travel Booking Engine**
+   - *Category*: Multi-Platform System
+   - *Description*: Tourism & bus charter reservation system with automated seat layout and invoice generation.
+   - *Stack*: Laravel, PHP, MySQL, Bootstrap.
+
+8. **SmartGate RFID Parking System**
+   - *Category*: Multi-Platform System
+   - *Description*: IoT-integrated barrier gate automation with RFID authentication and vehicle logging.
+   - *Stack*: Java, MySQL, Linux.
+
+9. **WeatherPulse Hyperlocal**
+   - *Category*: Web Application
+   - *Description*: Weather monitoring dashboard with interactive maps and radar precipitation layers.
+   - *Stack*: TypeScript, React, Tailwind CSS, OpenWeather API.
+
+---
+
+## Official Certifications & Credentials
+- **Belajar Membangun Aplikasi Multi-Platform (Flutter)** — Dicoding Indonesia / Google Authorized (2024)
+- **Menjadi Front-End Web Developer Expert** — Dicoding Indonesia (2024)
+- **Sertifikasi Profesi Junior Web Developer** — Badan Nasional Sertifikasi Profesi / BNSP (2023)
+- **Cloud Practitioner Essentials (AWS Cloud)** — Amazon Web Services / AWS (2023)
+- **Android Developer Fundamentals** — Google Developers / Dicoding Indonesia (2023)
+- **Belajar Dasar Git dengan GitHub** — Dicoding Indonesia (2022)
+
+---
+
+## Complete Reference File
+For a comprehensive breakdown of all case studies and architecture decisions, visit:
+- Full Details: https://justrifkyy.github.io/llms-full.txt

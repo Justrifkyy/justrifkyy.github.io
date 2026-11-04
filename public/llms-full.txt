@@ -1,0 +1,136 @@
+# Muhammad Rifky Saputra Scania — Full Engineering Dossier & Knowledge Base
+
+> Comprehensive reference document for AI models, recruiters, and engineering evaluation.
+> Canonical URL: https://justrifkyy.github.io/llms-full.txt
+> Primary Website: https://justrifkyy.github.io
+
+---
+
+## 1. Professional Identity
+- **Full Legal Name**: Muhammad Rifky Saputra Scania
+- **Brand / Handle**: Justrifkyy
+- **Title**: Software Engineer
+- **Core Disciplines**:
+  - Web Engineering (Next.js 16, React 19, TypeScript, Tailwind CSS)
+  - Android Mobile Engineering (Flutter, Dart, Native Java, SQLite)
+  - Multi-Platform Systems (PHP, Laravel, MySQL, Docker, Turso LibSQL)
+  - Exploratory Interest: Data Science, Machine Learning (ML), Deep Learning (DL)
+- **Email**: rifky020504@gmail.com
+- **GitHub**: https://github.com/Justrifkyy
+- **LinkedIn**: https://www.linkedin.com/in/muh-rifky-saputra-scania
+- **Location**: Makassar / Maros, South Sulawesi, Indonesia
+- **Education**: Universitas Muslim Indonesia (UMI), S1 Teknik Informatika (Semester 7, 2023 — Sekarang)
+
+---
+
+## 2. Core Engineering Philosophy
+- **Anti-Fragile Architecture**: Building systems that do not break under unexpected network dropouts or state shifts (offline-first sync with SQLite, resilient error boundaries).
+- **Clean Code & Modularity**: Separation of concerns using Clean Architecture patterns, strict typing with TypeScript, and reusable component hierarchies.
+- **Expressive Aesthetic (Neo-Brutalism)**: Utilizing high-contrast typography, functional drop shadows, deliberate borders, and engaging micro-interactions that communicate confidence and clarity.
+
+---
+
+## 3. Detailed Project Case Studies
+
+### Project 01: InformationPerisai-System (UMI Research Portal)
+- **Category**: Web Application
+- **Role**: Full-Stack Software Engineer
+- **Challenge / Problem**: UKM PERISAI UMI had fragmented research documentation scattered across messaging groups and physical paper archives, resulting in frequent data loss and tedious manual search.
+- **Solution & Process**: Designed and built an encrypted digital archive and publication repository using Next.js App Router, TypeScript, and Turso cloud database. Implemented role-based access control, fast full-text search, and automated audit logs.
+- **Tools**: Next.js, React, TypeScript, Tailwind CSS, Turso DB, Git.
+- **Result**: Reduced document retrieval latency from 25 minutes to under 2 seconds; zero document loss reported across 4 active academic departments.
+- **Repository**: https://github.com/Justrifkyy
+
+### Project 02: Mandiri Global — Fashion Sale System
+- **Category**: Web Application
+- **Role**: Fullstack Web Developer
+- **Challenge / Problem**: Retail fashion brand Mandiri Global required a dedicated digital storefront with precise variant-level stock management (sizes & colors), automated 15-minute order reservations to prevent dead stock, and seamless payment gateway validation without manual order confirmations.
+- **Solution & Process**: Architected a production fullstack application with Next.js App Router and TypeScript, using PostgreSQL with Prisma ORM. Integrated Midtrans Snap payment gateway with automated server-side webhook validation, Biteship shipping calculation, and atomic stock reservation.
+- **Tools**: Next.js, TypeScript, Tailwind CSS, Prisma ORM, PostgreSQL, Midtrans API, Biteship.
+- **Result**: Deployed live production e-commerce store with zero inventory overselling, automated payment reconciliation, and streamlined order fulfillment.
+- **Live URL**: https://fashion-sale-system.vercel.app/
+- **Repository**: https://github.com/Justrifkyy/fashionSale-System
+
+### Project 03: Promptverse AI Studio
+- **Category**: Web Application
+- **Role**: Software Engineer
+- **Challenge / Problem**: Engineers and prompt designers waste time repeatedly formatting, storing, and testing complex system prompts across multiple LLM playgrounds without version history.
+- **Solution & Process**: Developed a developer-centric workbench to organize, test, and benchmark prompt templates with real-time token cost estimation and dynamic parameter substitution.
+- **Tools**: Next.js, React, Tailwind CSS, TypeScript, OpenAI API.
+- **Result**: Streamlined prompt engineering workflow with instant JSON/YAML export.
+- **Repository**: https://github.com/Justrifkyy
+
+### Project 04: AgroScan Leaf Doctor
+- **Category**: Mobile Application (Android)
+- **Role**: Mobile Software Engineer
+- **Challenge / Problem**: Farmers in rural areas often lack immediate access to agricultural experts, and internet connectivity is frequently unavailable on farmlands.
+- **Solution & Process**: Built a Flutter Android app capable of capturing leaf photos and executing on-device machine learning inference offline to detect common plant diseases and recommend treatment steps.
+- **Tools**: Flutter, Dart, Android, SQLite, On-device ML Pipeline.
+- **Result**: Enabled offline disease diagnosis within 450ms on low-to-mid range Android devices.
+- **Repository**: https://github.com/Justrifkyy
+
+### Project 05: Scania Fleet Navigator
+- **Category**: Mobile Application (Android)
+- **Role**: Mobile & Systems Engineer
+- **Challenge / Problem**: Inter-city transport operators frequently experience GPS dead-zones, leading to lost location telemetry and inaccurate arrival estimates.
+- **Solution & Process**: Created a driver-facing mobile navigation dashboard with background location tracking, localized vector tile caching, and automatic sync upon reconnection.
+- **Tools**: Flutter, Dart, Android, SQLite, Leaflet.js.
+- **Result**: Guaranteed 100% route recovery after cellular reconnects with zero memory leaks over 12-hour continuous driving shifts.
+- **Repository**: https://github.com/Justrifkyy
+
+### Project 06: HabitForge Minimalist
+- **Category**: Mobile Application (Android)
+- **Role**: Mobile Application Developer
+- **Challenge / Problem**: Most habit apps overwhelm users with ads, complex social feeds, and mandatory account creation.
+- **Solution & Process**: Crafted an offline-first micro-habit tracker with brutalist visual feedback, GitHub-style consistency heatmaps, and zero telemetry overhead.
+- **Tools**: Flutter, Dart, Android, SQLite.
+- **Result**: Instant launch time (<150ms) with full user privacy and local data ownership.
+- **Repository**: https://github.com/Justrifkyy
+
+### Project 07: Manga Travel Booking Engine
+- **Category**: Multi-Platform System
+- **Role**: Backend Developer (KKP Internship)
+- **Challenge / Problem**: Travel agency suffered from double-booking risks and slow manual phone reservations during peak holiday seasons.
+- **Solution & Process**: Developed an automated web reservation engine in Laravel and MySQL with dynamic seat layout visualization, automated WhatsApp notifications, and payment invoice tracking.
+- **Tools**: Laravel, PHP, MySQL, Bootstrap, RESTful API.
+- **Result**: Processed reservations with zero double-booking concurrency bugs; reduced booking confirmation time by 80%.
+- **Repository**: https://github.com/Justrifkyy
+
+### Project 08: SmartGate RFID Parking System
+- **Category**: Multi-Platform System
+- **Role**: Software & Systems Integrator
+- **Challenge / Problem**: Campus/facility gate congestion due to slow manual validation tickets.
+- **Solution & Process**: Integrated serial RFID readers with a Java desktop control server and centralized MySQL database to automate barrier lifting, vehicle logging, and blacklist alerts.
+- **Tools**: Java, MySQL, Linux Shell, Hardware Serial Interface.
+- **Result**: Reduced average gate passage time from 15 seconds to under 1.5 seconds per vehicle.
+- **Repository**: https://github.com/Justrifkyy
+
+### Project 09: WeatherPulse Hyperlocal
+- **Category**: Web Application
+- **Role**: Frontend Developer
+- **Challenge / Problem**: Heavy, ad-ridden weather websites consume excessive mobile data and deliver confusing meteorological charts.
+- **Solution & Process**: Designed a lightweight, high-contrast dashboard featuring animated precipitation vectors, interactive wind speed gauges, and hourly weather radar tiles.
+- **Tools**: TypeScript, React, Tailwind CSS, OpenWeather API.
+- **Result**: Delivered real-time hyperlocal forecasts in a package under 50KB gzipped.
+- **Repository**: https://github.com/Justrifkyy
+
+---
+
+## 4. Career History & Roles
+1. **Backend Developer — Kuliah Kerja Profesi (KKP) @ Manga Travel** (July 2026 — August 2026)
+   - Built backend API endpoints, database schema migrations, and payment verification webhooks.
+2. **Computer Laboratory Assistant @ Universitas Muslim Indonesia (UMI)** (December 2024 — Present)
+   - Mentoring over 100+ computer science students in data structures, algorithms, object-oriented programming (Java), and Linux operations.
+3. **IT Support & Field Work Intern @ MD Komputer Maros** (2022)
+   - Repaired PC/laptop hardware, performed OS imaging, and configured office LAN infrastructures.
+4. **Programming Lab Assistant & IT Support @ SMK Kebangsaan Indonesia Maros** (2019 — 2022)
+   - Assisted high school programming practicals and maintained institutional computer networks.
+
+---
+
+## 5. Contact & Socials
+- **Direct Email**: rifky020504@gmail.com
+- **GitHub**: https://github.com/Justrifkyy
+- **LinkedIn**: https://www.linkedin.com/in/muh-rifky-saputra-scania
+- **Instagram**: https://www.instagram.com/justrifkyy_
+- **Portfolio**: https://justrifkyy.github.io

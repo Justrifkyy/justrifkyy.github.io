@@ -64,7 +64,7 @@ export const About: React.FC = () => {
 
               {/* Sticky Note Quote rotated 6deg bottom right */}
               <div className="absolute -bottom-8 -right-4 md:-right-6 z-20 max-w-[260px]">
-                <div className="bg-primary text-ink dark:text-[#0A0A0A] border-3 border-ink shadow-brutal-md p-3.5 rotate-6 font-mono font-bold text-xs leading-snug hover:rotate-0 transition-transform">
+                <div className="bg-primary text-ink border-3 border-ink shadow-brutal-md p-3.5 rotate-6 font-mono font-bold text-xs leading-snug hover:rotate-0 transition-transform">
                   <p className="font-mono font-black text-xs md:text-sm leading-snug tracking-tight">
                     {t.about.photo.quoteText}
                   </p>
@@ -77,17 +77,39 @@ export const About: React.FC = () => {
           {/* Right: Text & Stats (Columns 6-12) */}
           <div className="lg:col-span-7 flex flex-col gap-6">
             
-            {/* Identity Badges Strip */}
-            <div className="flex flex-wrap items-center gap-2">
-              {t.about.badges.map((badge, idx) => (
-                <span
-                  key={idx}
-                  className="font-mono text-[11px] md:text-xs font-black uppercase tracking-wider px-2.5 py-1 bg-paper dark:bg-[#12141D] border-2 border-ink shadow-[2px_2px_0_#0A0A0A] dark:shadow-[2px_2px_0_#00A3E0] hover:-translate-y-0.5 transition-transform inline-flex items-center gap-1.5"
-                >
-                  <TechIconsFor text={badge} className="w-3.5 h-3.5 shrink-0" />
-                  <span>{badge}</span>
-                </span>
-              ))}
+            {/* Identity Badges Strip (Tri-Color Neo-Brutalist Badges) */}
+            <div className="flex flex-wrap items-center gap-2.5">
+              {t.about.badges.map((badge, idx) => {
+                const badgeThemes = [
+                  {
+                    bg: "bg-primary text-ink hover:bg-[#ffe666]",
+                    border: "border-2 border-ink",
+                    shadow: "shadow-[3px_3px_0_#0A0A0A]",
+                  },
+                  {
+                    bg: "bg-accent-pink text-ink hover:bg-[#ff7bb3]",
+                    border: "border-2 border-ink",
+                    shadow: "shadow-[3px_3px_0_#0A0A0A]",
+                  },
+                  {
+                    bg: "bg-accent-blue text-paper hover:bg-[#6891ff]",
+                    border: "border-2 border-ink",
+                    shadow: "shadow-[3px_3px_0_#0A0A0A]",
+                  },
+                ];
+
+                const theme = badgeThemes[idx % badgeThemes.length];
+
+                return (
+                  <span
+                    key={idx}
+                    className={`font-mono text-xs md:text-sm font-black uppercase tracking-wider px-3.5 py-1.5 ${theme.bg} ${theme.border} ${theme.shadow} hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-brutal-sm transition-all duration-150 inline-flex items-center gap-2 select-none cursor-default`}
+                  >
+                    <TechIconsFor text={badge} className="w-4 h-4 shrink-0" />
+                    <span>{badge}</span>
+                  </span>
+                );
+              })}
             </div>
 
             {/* Revamped Non-Boring Paragraphs */}
@@ -134,9 +156,9 @@ const StatCard: React.FC<StatCardProps> = ({ value, suffix, label, color, href }
   const animatedRef = useRef(false);
 
   const bgStyles = {
-    primary: "bg-primary text-ink dark:text-[#0A0A0A]",
-    accentPink: "bg-accent-pink text-ink dark:text-[#0A0A0A]",
-    accentBlue: "bg-accent-blue text-paper dark:text-[#0A0A0A]",
+    primary: "bg-primary text-ink",
+    accentPink: "bg-accent-pink text-ink",
+    accentBlue: "bg-accent-blue text-paper",
   };
 
   useEffect(() => {
@@ -180,7 +202,7 @@ const StatCard: React.FC<StatCardProps> = ({ value, suffix, label, color, href }
       title="Buka profil GitHub @Justrifkyy ↗"
     >
       {/* Top right pill badge */}
-      <div className="absolute top-2.5 right-2.5 flex items-center gap-1 font-mono text-[10px] font-black uppercase tracking-wider bg-ink text-paper dark:bg-[#0A0A0A] dark:text-[#FFFDF5] px-1.5 py-0.5 border border-ink opacity-70 group-hover:opacity-100 group-hover:scale-105 transition-all">
+      <div className="absolute top-2.5 right-2.5 flex items-center gap-1 font-mono text-[10px] font-black uppercase tracking-wider bg-ink text-paper px-1.5 py-0.5 border border-ink opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all">
         <span>GITHUB</span>
         <ArrowUpRight className="w-3 h-3 stroke-[3]" />
       </div>

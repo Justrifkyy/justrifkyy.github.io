@@ -1,0 +1,37 @@
+# Robots.txt for Muhammad Rifky Saputra Scania Portfolio
+# Website: https://justrifkyy.github.io
+
+User-agent: *
+Allow: /
+Disallow: /api/
+
+# Explicitly welcome generative AI search crawlers (GEO)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+Sitemap: https://justrifkyy.github.io/sitemap.xml
+Host: https://justrifkyy.github.io

@@ -1,0 +1,16 @@
+{
+  "name": "Muhammad Rifky Saputra Scania — Portfolio",
+  "short_name": "Rifky Scania",
+  "description": "Portofolio Software Engineer Muhammad Rifky Saputra Scania — Web, Mobile Android & Multi-Platform.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FFFDF5",
+  "theme_color": "#FFE14D",
+  "icons": [
+    {
+      "src": "/logo-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
