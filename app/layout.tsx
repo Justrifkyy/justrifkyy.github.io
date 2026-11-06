@@ -248,7 +248,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html
+    <html suppressHydrationWarning
       lang="id"
       className={`${bricolage.variable} ${spaceGrotesk.variable} ${spaceMono.variable} scroll-smooth`}
     >
@@ -258,7 +258,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="min-h-screen bg-paper text-ink font-body selection:bg-primary selection:text-ink antialiased">
+      <body suppressHydrationWarning className="min-h-screen bg-paper text-ink font-body selection:bg-primary selection:text-ink antialiased">
         <LanguageProvider>
           <SmoothScrollProvider>
             <ScrollProgress />
