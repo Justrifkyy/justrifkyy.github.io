@@ -31,6 +31,7 @@ export interface TimelineItem {
   org: string;
   summary: string;
   tags?: string[];
+  type?: "work" | "education";
 }
 
 export interface CertificateItem {
@@ -119,6 +120,14 @@ export interface PortfolioData {
   };
   experience: {
     heading: { label: string; text: string };
+    workLabel?: string;
+    educationLabel?: string;
+    allLabel?: string;
+    statusBadge?: string;
+    statusTitle?: string;
+    statusOrg?: string;
+    statusSummary?: string;
+    statusTags?: string[];
     items: TimelineItem[];
   };
   certificates: {
@@ -587,6 +596,14 @@ export const portfolioDataId: PortfolioData = {
 
   experience: {
     heading: { label: "04 / JEJAK", text: "PENGALAMAN & PENDIDIKAN" },
+    workLabel: "PENGALAMAN KERJA & LAB",
+    educationLabel: "PENDIDIKAN FORMAL",
+    allLabel: "SEMUA",
+    statusBadge: "STATUS • MAHASISWA AKTIF",
+    statusTitle: "Kompetensi & Kesiapan Rekayasa",
+    statusOrg: "Universitas Muslim Indonesia (UMI)",
+    statusSummary: "Fokus pada Software Engineering, arsitektur Web & Mobile Android, Clean Architecture, serta siap berkolaborasi dalam proyek profesional.",
+    statusTags: ["Clean Architecture", "Code Review", "Mentoring", "Problem Solving"],
     items: [
       {
         period: "JULI 2026 — AGUSTUS 2026",
@@ -594,6 +611,7 @@ export const portfolioDataId: PortfolioData = {
         org: "Manga Travel",
         summary: "Melaksanakan program Kuliah Kerja Profesi (KKP) selama satu bulan penuh sebagai Backend Developer. Bertanggung jawab merancang arsitektur RESTful API, optimalisasi database, dan integrasi modul sistem layanan pemesanan perjalanan Manga Travel.",
         tags: ["PHP", "Laravel", "REST API", "MySQL"],
+        type: "work",
       },
       {
         period: "DESEMBER 2024 — SEKARANG",
@@ -601,6 +619,7 @@ export const portfolioDataId: PortfolioData = {
         org: "Laboratorium Komputer — Universitas Muslim Indonesia (UMI)",
         summary: "Bertugas mendampingi jalannya praktikum pemrograman dan rekayasa perangkat lunak mahasiswa, membimbing problem-solving kode, serta membantu pemeliharaan infrastruktur laboratorium komputer.",
         tags: ["Java", "Linux", "Troubleshooting", "Clean Architecture"],
+        type: "work",
       },
       {
         period: "2023 — SEKARANG (2026)",
@@ -608,6 +627,7 @@ export const portfolioDataId: PortfolioData = {
         org: "Universitas Muslim Indonesia (UMI)",
         summary: "Mendalami Software Engineering, struktur data, dan rekayasa perangkat lunak. Aktif membangun platform digital InformationPerisai-System untuk UKM PERISAI UMI serta berbagai aplikasi Web dan Mobile Android.",
         tags: ["Next.js", "Flutter", "Android", "TypeScript"],
+        type: "education",
       },
       {
         period: "2022",
@@ -615,6 +635,7 @@ export const portfolioDataId: PortfolioData = {
         org: "MD Komputer Maros",
         summary: "Menangani perbaikan hardware & software komputer, instalasi sistem operasi, perakitan PC, konfigurasi jaringan lokal (LAN), serta pelayanan teknis perangkat konsumen.",
         tags: ["Hardware", "Linux", "Troubleshooting"],
+        type: "work",
       },
       {
         period: "2019 — 2022",
@@ -622,6 +643,7 @@ export const portfolioDataId: PortfolioData = {
         org: "SMK Kebangsaan Indonesia Maros",
         summary: "Mempelajari dasar rekayasa jaringan komputer dan pemrograman. Berperan aktif sebagai Asisten Lab Pemrograman dan IT Support sekolah dalam pemeliharaan lab komputer serta pendampingan praktikum siswa.",
         tags: ["Networking", "Troubleshooting", "Basics"],
+        type: "education",
       },
     ],
   },
@@ -1176,6 +1198,14 @@ export const portfolioDataEn: PortfolioData = {
 
   experience: {
     heading: { label: "04 / TIMELINE", text: "EXPERIENCE & EDUCATION" },
+    workLabel: "WORK & EXPERIENCE",
+    educationLabel: "FORMAL EDUCATION",
+    allLabel: "ALL",
+    statusBadge: "STATUS • ACTIVE UNDERGRADUATE",
+    statusTitle: "Competencies & Engineering Readiness",
+    statusOrg: "Universitas Muslim Indonesia (UMI)",
+    statusSummary: "Specializing in Software Engineering, scalable Web & Android applications, Clean Architecture, and ready for collaborative engineering roles.",
+    statusTags: ["Clean Architecture", "Code Review", "Mentoring", "Problem Solving"],
     items: [
       {
         period: "JUL 2026 — AUG 2026",
@@ -1183,6 +1213,7 @@ export const portfolioDataEn: PortfolioData = {
         org: "Manga Travel",
         summary: "Completed a 1-month intensive university internship (Kuliah Kerja Profesi) focused on backend development. Architected RESTful API endpoints, managed database workflows, and optimized travel booking service integrations.",
         tags: ["PHP", "Laravel", "REST API", "MySQL"],
+        type: "work",
       },
       {
         period: "DEC 2024 — PRESENT",
@@ -1190,6 +1221,7 @@ export const portfolioDataEn: PortfolioData = {
         org: "Informatics Computer Laboratory — Universitas Muslim Indonesia (UMI)",
         summary: "Facilitating student laboratory practicums across software programming, algorithms, and data structures. Assisting in code debugging, student assignment reviews, and computer lab server maintenance.",
         tags: ["Java", "Linux", "Troubleshooting", "Clean Architecture"],
+        type: "work",
       },
       {
         period: "2023 — PRESENT (2026)",
@@ -1197,6 +1229,7 @@ export const portfolioDataEn: PortfolioData = {
         org: "Universitas Muslim Indonesia (UMI)",
         summary: "Focusing on Software Engineering, data structures, and application development. Built the research platform InformationPerisai-System for UKM PERISAI UMI along with various Web and Android mobile systems.",
         tags: ["Next.js", "Flutter", "Android", "TypeScript"],
+        type: "education",
       },
       {
         period: "2022",
@@ -1204,6 +1237,7 @@ export const portfolioDataEn: PortfolioData = {
         org: "MD Komputer Maros",
         summary: "Handled computer hardware & software troubleshooting, operating system installation, PC assembly, local network configuration (LAN), and technical device support.",
         tags: ["Hardware", "Linux", "Troubleshooting"],
+        type: "work",
       },
       {
         period: "2019 — 2022",
@@ -1211,6 +1245,7 @@ export const portfolioDataEn: PortfolioData = {
         org: "SMK Kebangsaan Indonesia Maros",
         summary: "Learned computer networking and software fundamentals. Actively served as Programming Lab Assistant and IT Support for computer lab maintenance and student mentoring.",
         tags: ["Networking", "Troubleshooting", "Basics"],
+        type: "education",
       },
     ],
   },
